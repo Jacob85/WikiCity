@@ -3,6 +3,7 @@ package com.example.WikiCity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
+import il.ac.bl.JsonParserUtil;
 import il.ac.services.IQuery;
 import il.ac.services.QueryWikipedia;
 import il.ac.shenkar.common.DialogHelper;
@@ -27,7 +28,7 @@ public class MyActivity extends Activity implements IQuery
         try
         {
             DialogHelper.showProgressDialog("fatching data from the web", this);
-            wikipedia.execute(new URLWithCallback(this, new URL("http://en.wikipedia.org/w/api.php?action=query&prop=revisions&format=json&rvprop=content&titles=Berlin")));
+            wikipedia.execute(new URLWithCallback(this, new URL("http://en.wikipedia.org//w/api.php?action=query&prop=revisions&format=json&rvprop=content&rvsection=0&titles=Los%20Angeles")));
         } catch (MalformedURLException e)
         {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -45,6 +46,7 @@ public class MyActivity extends Activity implements IQuery
         else
             textView.setText(e.getMessage());
 
+        JsonParserUtil.parseJson(returnedJson);
         DialogHelper.closeProggresDialog();
     }
 }
