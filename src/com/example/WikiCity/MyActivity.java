@@ -2,13 +2,17 @@ package com.example.WikiCity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import com.haarman.listviewanimations.itemmanipulation.ExpandableListItemAdapter;
-import com.haarman.listviewanimations.swinginadapters.prepared.SwingRightInAnimationAdapter;
-import com.haarman.listviewanimations.view.DynamicListView;
+import android.widget.TextView;
+import il.ac.services.IQuery;
+import il.ac.services.QueryWikipedia;
+import il.ac.shenkar.common.DialogHelper;
+import il.ac.shenkar.common.URLWithCallback;
+import org.json.JSONObject;
 
-public class MyActivity extends Activity
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class MyActivity extends Activity implements IQuery
 {
     /**
      * Called when the activity is first created.
@@ -19,7 +23,28 @@ public class MyActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        QueryWikipedia wikipedia = new QueryWikipedia();
+        try
+        {
+            DialogHelper.showProgressDialog("fatching data from the web", this);
+            wikipedia.execute(new URLWithCallback(this, new URL("http://en.wikipedia.org/w/api.php?action=query&prop=revisions&format=json&rvprop=content&titles=Berlin")));
+        } catch (MalformedURLException e)
+        {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
 
 
+    }
+
+    @Override
+    public void onQueryFinished(JSONObject returnedJson, Exception e)
+    {
+        TextView textView = (TextView) findViewById(R.id.justSomeText);
+        if (e == null)
+            textView.setText(returnedJson.toString());
+        else
+            textView.setText(e.getMessage());
+
+        DialogHelper.closeProggresDialog();
     }
 }
