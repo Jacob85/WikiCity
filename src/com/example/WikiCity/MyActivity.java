@@ -28,7 +28,7 @@ public class MyActivity extends Activity implements IQuery
         try
         {
             DialogHelper.showProgressDialog("fatching data from the web", this);
-            wikipedia.execute(new URLWithCallback(this, new URL("http://en.wikipedia.org//w/api.php?action=query&prop=revisions&format=json&rvprop=content&rvsection=0&titles=Los%20Angeles")));
+            wikipedia.execute(new URLWithCallback(this, new URL("http://en.wikipedia.org//w/api.php?action=query&prop=revisions&format=json&rvprop=content&rvsection=0&titles=Las%20Vegas")));
         } catch (MalformedURLException e)
         {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.

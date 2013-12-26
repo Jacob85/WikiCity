@@ -71,6 +71,7 @@ public class JsonParserUtil
             if (index > -1)
             {
                 String key = tokens[i].substring(0,index -1);
+                key = key.trim();
                 String value = tokens[i].substring(index +1);
                 mapToReturn.put(key, value);
             }
