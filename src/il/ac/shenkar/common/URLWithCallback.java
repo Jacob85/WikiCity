@@ -1,8 +1,8 @@
 package il.ac.shenkar.common;
 
-import il.ac.services.IQuery;
+import il.ac.services.IWikiQuery;
+import il.ac.services.QueryWikipediaCallback;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -15,9 +15,9 @@ import java.net.URL;
 public class URLWithCallback
 {
     private URL url;
-    private IQuery callback;
+    private QueryWikipediaCallback callback;
 
-    public URLWithCallback(IQuery callback, URL url)
+    public URLWithCallback(QueryWikipediaCallback callback, URL url)
     {
         this.callback = callback;
         this.url = url;
@@ -35,12 +35,12 @@ public class URLWithCallback
         this.url = url;
     }
 
-    public IQuery getCallback()
+    public QueryWikipediaCallback getCallback()
     {
         return callback;
     }
 
-    public void setCallback(IQuery callback)
+    public void setCallback(QueryWikipediaCallback callback)
     {
         this.callback = callback;
     }

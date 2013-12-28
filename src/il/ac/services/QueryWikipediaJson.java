@@ -18,9 +18,9 @@ import java.net.URL;
  * Time: 2:20 PM
  * To change this template use File | Settings | File Templates.
  */
-public class QueryWikipedia extends AsyncTask <URLWithCallback, Integer, JSONObject>
+public class QueryWikipediaJson extends AsyncTask <URLWithCallback, Integer, JSONObject>
 {
-    private IQuery callback;
+    private IWikiQuery callback;
     private QueryException exception;
     @Override
     protected JSONObject doInBackground(URLWithCallback... params)
@@ -28,7 +28,7 @@ public class QueryWikipedia extends AsyncTask <URLWithCallback, Integer, JSONObj
         if (params[0] == null)
         {
             exception = new QueryException("Passed null URLWithCallback parameter");
-            Log.i(QueryWikipedia.class.getSimpleName(), exception.getMessage());
+            Log.i(QueryWikipediaJson.class.getSimpleName(), exception.getMessage());
             return null;
         }
         //set the callback to be the callback we received
@@ -36,7 +36,7 @@ public class QueryWikipedia extends AsyncTask <URLWithCallback, Integer, JSONObj
         if (callback == null)
         {
             exception = new QueryException("Passed null callback parameter");
-            Log.i(QueryWikipedia.class.getSimpleName(), exception.getMessage());
+            Log.i(QueryWikipediaJson.class.getSimpleName(), exception.getMessage());
             return null;
         }
 
@@ -51,12 +51,12 @@ public class QueryWikipedia extends AsyncTask <URLWithCallback, Integer, JSONObj
         } catch (IOException e)
         {
             exception = new QueryException("Error in Querying Wikipedia");
-            Log.i(QueryWikipedia.class.getSimpleName(), exception.getMessage());
+            Log.i(QueryWikipediaJson.class.getSimpleName(), exception.getMessage());
 
         } catch (JSONException e)
         {
             exception = new QueryException("Error in Creating JSON Object");
-            Log.i(QueryWikipedia.class.getSimpleName(), exception.getMessage());
+            Log.i(QueryWikipediaJson.class.getSimpleName(), exception.getMessage());
         }
         return jsonToReturn;
     }
