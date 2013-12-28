@@ -20,7 +20,7 @@ import java.net.URL;
  */
 public class QueryWikipediaJson extends AsyncTask <URLWithCallback, Integer, JSONObject>
 {
-    private IWikiQuery callback;
+    private QueryWikipediaCallback callback;
     private QueryException exception;
     @Override
     protected JSONObject doInBackground(URLWithCallback... params)
@@ -66,7 +66,7 @@ public class QueryWikipediaJson extends AsyncTask <URLWithCallback, Integer, JSO
     {
         super.onPostExecute(jsonObject);
         //return the JSON With callback
-        callback.onQueryFinished(jsonObject, exception);
+        callback.done(jsonObject, exception);
     }
 
     private String getFromWeb(URL url)  throws IOException

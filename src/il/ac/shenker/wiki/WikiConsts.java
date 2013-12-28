@@ -23,4 +23,9 @@ public class WikiConsts
     public static String CITY_LAT_M = "latm";        // 0.3 N         CITY_LAT_D.CITY_LAT_M ==> 34.03 N
     public static String CITY_LONG_D = "longd";
     public static String CITY_LONG_M = "longm";
+    public static String CITY_FLAG = "image_flag";
+    public static String CITY_SEAL = "image_seal";
+
+
+
 }

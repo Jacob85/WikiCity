@@ -29,23 +29,21 @@
     <option name="TOOL_WINDOW_LOG_LEVEL" value="INFO" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7490929d-3065-4c72-b782-3e3839f18b60" name="Default" comment="removing white spaces from the keys while parsing the Json response Object">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/il/ac/bl/DataAccessObject.java" />
-      <change type="MOVED" beforePath="C:\Users\Jacob\IdeaProjects\WikiCity\src\il\ac\services\IQuery.java" afterPath="$PROJECT_DIR$/src/il/ac/services/IWikiQuery.java" />
-      <change type="MOVED" beforePath="C:\Users\Jacob\IdeaProjects\WikiCity\src\il\ac\services\QueryWikipedia.java" afterPath="$PROJECT_DIR$/src/il/ac/services/QueryWikipediaJson.java" />
+    <list default="true" id="7490929d-3065-4c72-b782-3e3839f18b60" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/WikiCity/MyActivity.java" afterPath="$PROJECT_DIR$/src/com/example/WikiCity/MyActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/il/ac/shenkar/common/URLWithCallback.java" afterPath="$PROJECT_DIR$/src/il/ac/shenkar/common/URLWithCallback.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/il/ac/services/QueryWikipediaJson.java" afterPath="$PROJECT_DIR$/src/il/ac/services/QueryWikipediaJson.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/il/ac/shenker/wiki/WikiConsts.java" afterPath="$PROJECT_DIR$/src/il/ac/shenker/wiki/WikiConsts.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WikiCity.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="$PROJECT_DIR$/res/values/strings.xml" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1387826237527" ignored="false" />
-    <file path="/MyActivity.java" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388252239516" ignored="false" />
+    <file path="/MyActivity.java" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388257855966" ignored="false" />
     <file path="/a.dummy" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1387830331931" ignored="false" />
-    <file path="/Dummy.txt" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388250766166" ignored="false" />
+    <file path="/Dummy.txt" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388258243378" ignored="false" />
     <file path="/main.xml" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388065106421" ignored="false" />
     <file path="/WikiConst.java" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388048206094" ignored="false" />
-    <file path="/WikiConsts.java" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388075749783" ignored="false" />
+    <file path="/WikiConsts.java" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388256086329" ignored="false" />
     <file path="/MessageHalper.java" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388058702200" ignored="false" />
     <file path="/WikiPageSection.java" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388058923646" ignored="false" />
     <file path="/QueryWikipedia.java" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388062896538" ignored="false" />
@@ -57,6 +55,7 @@
     <file path="/fragment.java" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388063694007" ignored="false" />
     <file path="/JsonParserUtil.java" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388075980483" ignored="false" />
     <file path="/DataAccessObject.java" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388252839782" ignored="false" />
+    <file path="/QueryWikipediaJson.java" changelist="7490929d-3065-4c72-b782-3e3839f18b60" time="1388257994340" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +70,23 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/WikiCity/MyActivity.java" line="42" class="com.example.WikiCity.MyActivity$1" package="com.example.WikiCity">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -116,117 +132,118 @@
     <favorites_list name="WikiCity" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="47" selection-start="359" selection-end="359" vertical-scroll-proportion="-2.72">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/example/WikiCity/MyActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="19" selection-start="1912" selection-end="1912" vertical-scroll-proportion="0.8770865">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#985#1578#0" expanded="true" />
-                <element signature="e#1563#1564#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataAccessObject.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/il/ac/bl/DataAccessObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="44" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1106#1829#0" expanded="true" />
-                <element signature="e#1814#1815#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="URLWithCallback.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/il/ac/shenkar/common/URLWithCallback.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="50" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JsonParserUtil.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/il/ac/bl/JsonParserUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="27" selection-start="2477" selection-end="2477" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#570#586#0" expanded="true" />
-                <element signature="e#1801#1817#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QueryWikipediaCallback.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/il/ac/services/QueryWikipediaCallback.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="36" selection-start="247" selection-end="261" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Info Template Sample" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Info Template Sample">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="25" selection-start="4369" selection-end="4369" vertical-scroll-proportion="-7.48">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WikiConsts.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/il/ac/shenker/wiki/WikiConsts.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="30" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IWikiQuery.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/il/ac/services/IWikiQuery.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="1" selection-start="299" selection-end="299" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QueryWikipediaJson.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/il/ac/services/QueryWikipediaJson.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="0" selection-start="2118" selection-end="2118" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5122265">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
+              <provider editor-type-id="android-designer">
+                <state />
+              </provider>
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="8" column="47" selection-start="359" selection-end="359" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MyActivity.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/com/example/WikiCity/MyActivity.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="45" column="121" selection-start="1898" selection-end="1898" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="QueryWikipediaJson.java" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/il/ac/services/QueryWikipediaJson.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="87" column="71" selection-start="3045" selection-end="3045" vertical-scroll-proportion="0.79761904">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="18" column="34" selection-start="844" selection-end="844" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DataAccessObject.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/il/ac/bl/DataAccessObject.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="20" column="44" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="URLWithCallback.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/il/ac/shenkar/common/URLWithCallback.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="47" column="50" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="JsonParserUtil.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/il/ac/bl/JsonParserUtil.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="83" column="27" selection-start="2477" selection-end="2477" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="QueryWikipediaCallback.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/il/ac/services/QueryWikipediaCallback.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="11" column="36" selection-start="247" selection-end="261" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="IWikiQuery.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/il/ac/services/IWikiQuery.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="15" column="1" selection-start="299" selection-end="299" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="WikiConsts.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/il/ac/shenker/wiki/WikiConsts.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="20" column="34" selection-start="581" selection-end="642" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="WikiConsts.java" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/il/ac/shenker/wiki/WikiConsts.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="27" column="5" selection-start="1005" selection-end="1005" vertical-scroll-proportion="0.675">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -244,7 +261,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/il/ac/shenkar/common/WikiPageSection.java" />
         <option value="$PROJECT_DIR$/src/il/ac/services/QueryWikipediaCallback.java" />
         <option value="$PROJECT_DIR$/src/il/ac/services/IDataAccesObject.java" />
         <option value="$PROJECT_DIR$/src/il/ac/exceptions/QueryException.java" />
@@ -253,13 +269,14 @@
         <option value="$USER_HOME$/Downloads/ListViewAnimations-master/library/src/com/haarman/listviewanimations/view/DynamicListView.java" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/Info Template Sample" />
-        <option value="$PROJECT_DIR$/src/il/ac/shenker/wiki/WikiConsts.java" />
         <option value="$PROJECT_DIR$/src/il/ac/bl/JsonParserUtil.java" />
         <option value="$PROJECT_DIR$/src/il/ac/services/IQuery.java" />
         <option value="$PROJECT_DIR$/src/il/ac/shenkar/common/URLWithCallback.java" />
         <option value="$PROJECT_DIR$/src/il/ac/bl/DataAccessObject.java" />
         <option value="$PROJECT_DIR$/src/il/ac/services/IWikiQuery.java" />
+        <option value="$PROJECT_DIR$/src/il/ac/shenker/wiki/WikiConsts.java" />
         <option value="$PROJECT_DIR$/src/com/example/WikiCity/MyActivity.java" />
+        <option value="$PROJECT_DIR$/src/il/ac/services/QueryWikipediaJson.java" />
       </list>
     </option>
   </component>
@@ -301,6 +318,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -380,54 +398,6 @@
               <option name="myItemId" value="ac" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WikiCity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WikiCity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="exceptions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WikiCity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WikiCity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -444,40 +414,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="WikiCity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WikiCity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WikiCity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WikiCity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WikiCity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -493,15 +434,16 @@
     <property name="AndroidLayoutSelectedEditor" value="text-editor" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="030fa3a0d0210d97" />
-    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="4.3" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -543,19 +485,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -581,6 +510,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -695,7 +637,11 @@
       <created>1388076051755</created>
       <updated>1388076051755</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Created new DAO Object that will manage all of our data and query Wikipedia API">
+      <created>1388253132169</created>
+      <updated>1388253132169</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -720,15 +666,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.5618915" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.5618915" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.8344923" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16550764" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -740,13 +682,17 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21364221" sideWeight="0.8344923" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21364221" sideWeight="0.67176634" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43810847" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="323" y="284" width="1050" height="505" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.5618915" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.5618915" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.8344923" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -791,7 +737,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="removing white spaces from the keys while parsing the Json response Object" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created new DAO Object that will manage all of our data and query Wikipedia API" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -808,6 +754,7 @@
     <MESSAGE value="I created some fies in order to start play with the Wiki  API&#10;I created a Asycntask that return query the Wiki DB and return a JSON Object" />
     <MESSAGE value="Created a parsing Utility for parsing the JSON Objects we are receiving.&#10;i now parse the city metadata;" />
     <MESSAGE value="removing white spaces from the keys while parsing the Json response Object" />
+    <MESSAGE value="Created new DAO Object that will manage all of our data and query Wikipedia API" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -817,36 +764,19 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Downloads/ListViewAnimations-master/library/src/com/haarman/listviewanimations/view/DynamicListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="559" column="39" selection-start="18477" selection-end="18477" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/ListViewAnimations-master/library/src/com/haarman/listviewanimations/swinginadapters/SingleAnimationAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="27" selection-start="1185" selection-end="1185" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="36" column="27" selection-start="1185" selection-end="1185" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Downloads/ListViewAnimations-master/library/src/com/haarman/listviewanimations/swinginadapters/AnimationAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="168" column="41" selection-start="5768" selection-end="5768" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="168" column="41" selection-start="5768" selection-end="5768" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Downloads/ListViewAnimations-master/library/src/com/haarman/listviewanimations/itemmanipulation/ExpandableListItemAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="314" column="40" selection-start="11003" selection-end="11003" vertical-scroll-proportion="0.2428884">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
+        <state line="314" column="40" selection-start="11003" selection-end="11003" vertical-scroll-proportion="0.2428884" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/android-sdks/sources/android-16/android/os/AsyncTask.java">
@@ -858,61 +788,35 @@
     </entry>
     <entry file="file://$USER_HOME$/android-sdks/sources/android-16/android/app/Activity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#217880#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/il/ac/services/QueryWikipediaJson.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="2118" selection-end="2118" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Info Template Sample">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="25" selection-start="4369" selection-end="4369" vertical-scroll-proportion="-7.48">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/il/ac/shenker/wiki/WikiConsts.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="30" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="53" column="25" selection-start="4369" selection-end="4369" vertical-scroll-proportion="-7.48" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/il/ac/bl/JsonParserUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="83" column="27" selection-start="2477" selection-end="2477" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#570#586#0" expanded="true" />
-            <element signature="e#1801#1817#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="47" selection-start="359" selection-end="359" vertical-scroll-proportion="-2.72">
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="android-designer">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="47" selection-start="359" selection-end="359" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/il/ac/shenkar/common/URLWithCallback.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="50" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -926,31 +830,42 @@
     <entry file="file://$PROJECT_DIR$/src/il/ac/bl/DataAccessObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="44" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1106#1829#0" expanded="true" />
-            <element signature="e#1814#1815#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/il/ac/services/IWikiQuery.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="1" selection-start="299" selection-end="299" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="34" selection-start="844" selection-end="844" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/WikiCity/MyActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="19" selection-start="1912" selection-end="1912" vertical-scroll-proportion="0.8770865">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#985#1578#0" expanded="true" />
-            <element signature="e#1563#1564#0" expanded="true" />
-          </folding>
+        <state line="45" column="121" selection-start="1898" selection-end="1898" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/il/ac/shenker/wiki/WikiConsts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="34" selection-start="581" selection-end="642" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/il/ac/services/QueryWikipediaJson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="71" selection-start="3045" selection-end="3045" vertical-scroll-proportion="0.79761904">
+          <folding />
         </state>
       </provider>
     </entry>

@@ -2,17 +2,19 @@ package com.example.WikiCity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import il.ac.bl.DataAccessObject;
 import il.ac.bl.JsonParserUtil;
 import il.ac.exceptions.QueryException;
 import il.ac.services.QueryWikipediaCallback;
-import il.ac.services.QueryWikipediaJson;
 import il.ac.shenkar.common.DialogHelper;
+import il.ac.shenker.wiki.WikiConsts;
 import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 public class MyActivity extends Activity
 {
@@ -24,8 +26,6 @@ public class MyActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
-        QueryWikipediaJson wikipedia = new QueryWikipediaJson();
 
         try
         {
@@ -40,7 +40,12 @@ public class MyActivity extends Activity
                     else
                         textView.setText(e.getMessage());
 
-                    JsonParserUtil.parseJson(returnedObject);
+                    HashMap <String, String> cityParsedJson = JsonParserUtil.parseJson(returnedObject);
+                    Log.i(MyActivity.class.getSimpleName(),"total population: " + cityParsedJson.get(WikiConsts.CITY_POPULATION));
+                    Log.i(MyActivity.class.getSimpleName(),"timezone offset : " + cityParsedJson.get(WikiConsts.TIME_ZONE_OFFSET));
+                    Log.i(MyActivity.class.getSimpleName(),"leader title : " + cityParsedJson.get(WikiConsts.LEADER_TITLE));
+
+
                     DialogHelper.closeProggresDialog();
                 }
             });
