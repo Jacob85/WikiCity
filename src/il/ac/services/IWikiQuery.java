@@ -14,5 +14,6 @@ import java.net.URL;
  */
 public interface IWikiQuery
 {
-    public void getCityJson(URL urlToQuery, QueryWikipediaCallback <JSONObject> callback) throws QueryException;
+    public void queryCityJson(URL urlToQuery, QueryWikipediaCallback<JSONObject> callback) throws QueryException;
+    public void queryImageFromCity(URL urlToQuery, QueryWikipediaCallback<JSONObject> callback);
 }

@@ -1,6 +1,7 @@
 package il.ac.shenkar.common;
 
 import il.ac.services.IWikiQuery;
+import il.ac.services.QueryPurpose;
 import il.ac.services.QueryWikipediaCallback;
 
 import java.net.URL;

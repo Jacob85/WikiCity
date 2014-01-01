@@ -3,12 +3,12 @@ package il.ac.bl;
 import android.util.Log;
 import il.ac.exceptions.QueryException;
 import il.ac.services.IWikiQuery;
+import il.ac.services.QueryPurpose;
 import il.ac.services.QueryWikipediaJson;
 import il.ac.services.QueryWikipediaCallback;
 import il.ac.shenkar.common.URLWithCallback;
 import org.json.JSONObject;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -37,8 +37,9 @@ public class DataAccessObject implements IWikiQuery
     }
 
     @Override
-    public void getCityJson(URL urlToQuery,final QueryWikipediaCallback<JSONObject> callback) throws QueryException
+    public void queryCityJson(URL urlToQuery, final QueryWikipediaCallback<JSONObject> callback) throws QueryException
     {
+            //todo yaki - refactor, pass thw received callback to the query object instead of creating new one
             queryWikipediaJson.execute(new URLWithCallback(new QueryWikipediaCallback()
             {
                 @Override
@@ -55,6 +56,13 @@ public class DataAccessObject implements IWikiQuery
 
                 }
             } , urlToQuery));
+
+    }
+
+    @Override
+    public void queryImageFromCity(URL urlToQuery, QueryWikipediaCallback<JSONObject> callback)
+    {
+        queryWikipediaJson.execute(new URLWithCallback(callback, urlToQuery));
 
     }
 

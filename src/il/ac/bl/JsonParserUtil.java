@@ -1,10 +1,13 @@
 package il.ac.bl;
 
 import android.util.Log;
+import il.ac.shenker.wiki.WikiImageInfo;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -22,7 +25,32 @@ public class JsonParserUtil
     {
     }
 
-    public static HashMap<String, String> parseJson(JSONObject json)
+    public static Collection<WikiImageInfo> parseJsonToImagesList(JSONObject jsonObject) throws JSONException
+    {
+        if (jsonObject == null)
+            return null;
+        Collection<WikiImageInfo> collectionToReturn = new ArrayList<WikiImageInfo>();
+
+        JSONObject query = jsonObject.getJSONObject("query");
+        JSONObject pages = query.getJSONObject("pages");
+        Iterator<?> keys = pages.keys();
+        WikiImageInfo.ImageInfoBuilder builder;
+        while (keys.hasNext())
+        {
+            builder = new WikiImageInfo.ImageInfoBuilder();
+            String key = (String) keys.next();
+            JSONObject pageId = pages.getJSONObject(key);
+            builder.Title(pageId.getString("title"));
+
+            JSONArray imageInfo = pageId.getJSONArray("imageinfo");
+            JSONObject rev0 = (JSONObject)imageInfo.get(0);
+            builder.Url(rev0.getString("url"));
+            collectionToReturn.add(builder.build());
+        }
+
+        return collectionToReturn;
+    }
+    public static HashMap<String, String> parseJsonToHashMap(JSONObject json)
     {
         HashMap<String, String> valuesToReturn = new HashMap<String, String>();
         if (json == null)
@@ -77,10 +105,6 @@ public class JsonParserUtil
             }
             index =0;
         }
-
-
-
-
         return mapToReturn;
     }
 
