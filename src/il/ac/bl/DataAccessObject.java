@@ -3,7 +3,6 @@ package il.ac.bl;
 import android.util.Log;
 import il.ac.exceptions.QueryException;
 import il.ac.services.IWikiQuery;
-import il.ac.services.QueryPurpose;
 import il.ac.services.QueryWikipediaJson;
 import il.ac.services.QueryWikipediaCallback;
 import il.ac.shenkar.common.URLWithCallback;

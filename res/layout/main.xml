@@ -5,16 +5,22 @@
               android:layout_height="fill_parent"
         >
 
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="show main query"
+            android:id="@+id/showMainQuery"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="show Image query"
+            android:id="@+id/showimage"/>
     <TextView android:id="@+id/justSomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
            android:layout_gravity="center"/>
-    <ListView android:id="@+id/MainListView"
-              android:layout_height="fill_parent"
-              android:layout_width="fill_parent" android:layout_marginTop="-109dp">
 
-     </ListView>
 
 </LinearLayout>
 

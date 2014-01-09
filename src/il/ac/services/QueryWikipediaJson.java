@@ -22,6 +22,7 @@ public class QueryWikipediaJson extends AsyncTask <URLWithCallback, Integer, JSO
 {
     private QueryWikipediaCallback callback;
     private QueryException exception;
+    private int QUERY_TIME_OUT = 8000;     //in milliseconds
     @Override
     protected JSONObject doInBackground(URLWithCallback... params)
     {
@@ -71,19 +72,21 @@ public class QueryWikipediaJson extends AsyncTask <URLWithCallback, Integer, JSO
 
     private String getFromWeb(URL url)  throws IOException
     {
-            //open connection
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            // Fetching the string
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            InputStreamReader inReader = new InputStreamReader(in);
-            BufferedReader bufferedReader = new BufferedReader(inReader);
-            StringBuilder responseBuilder = new StringBuilder();
-            for (String line = bufferedReader.readLine();line!=null; line = bufferedReader.readLine())
-            {
-                responseBuilder.append(line);
-            }
+        //open connection
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        urlConnection.setConnectTimeout(QUERY_TIME_OUT);
 
-            urlConnection.disconnect();
-            return responseBuilder.toString();
+        // Fetching the string
+        InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+        InputStreamReader inReader = new InputStreamReader(in);
+        BufferedReader bufferedReader = new BufferedReader(inReader);
+        StringBuilder responseBuilder = new StringBuilder();
+        for (String line = bufferedReader.readLine();line!=null; line = bufferedReader.readLine())
+        {
+            responseBuilder.append(line);
+        }
+
+        urlConnection.disconnect();
+        return responseBuilder.toString();
     }
 }
