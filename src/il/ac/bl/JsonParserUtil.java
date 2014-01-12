@@ -108,6 +108,16 @@ public class JsonParserUtil
         return mapToReturn;
     }
 
+    public static void  parseDBPediaJson(JSONObject json)
+    {
+        Iterator<?> keys = json.keys();
+        while (keys.hasNext())
+        {
+
+        }
+
+    }
+
 }
 
 
