@@ -18,7 +18,7 @@ import java.net.URL;
  * Time: 2:20 PM
  * To change this template use File | Settings | File Templates.
  */
-public class QueryWikipediaJson extends AsyncTask <URLWithCallback, Integer, JSONObject>
+public class QueryJsonFormWeb extends AsyncTask <URLWithCallback, Integer, JSONObject>
 {
     private QueryWikipediaCallback callback;
     private QueryException exception;
@@ -29,7 +29,7 @@ public class QueryWikipediaJson extends AsyncTask <URLWithCallback, Integer, JSO
         if (params[0] == null)
         {
             exception = new QueryException("Passed null URLWithCallback parameter");
-            Log.i(QueryWikipediaJson.class.getSimpleName(), exception.getMessage());
+            Log.i(QueryJsonFormWeb.class.getSimpleName(), exception.getMessage());
             return null;
         }
         //set the callback to be the callback we received
@@ -37,7 +37,7 @@ public class QueryWikipediaJson extends AsyncTask <URLWithCallback, Integer, JSO
         if (callback == null)
         {
             exception = new QueryException("Passed null callback parameter");
-            Log.i(QueryWikipediaJson.class.getSimpleName(), exception.getMessage());
+            Log.i(QueryJsonFormWeb.class.getSimpleName(), exception.getMessage());
             return null;
         }
 
@@ -52,12 +52,12 @@ public class QueryWikipediaJson extends AsyncTask <URLWithCallback, Integer, JSO
         } catch (IOException e)
         {
             exception = new QueryException("Error in Querying Wikipedia");
-            Log.i(QueryWikipediaJson.class.getSimpleName(), exception.getMessage());
+            Log.i(QueryJsonFormWeb.class.getSimpleName(), exception.getMessage());
 
         } catch (JSONException e)
         {
             exception = new QueryException("Error in Creating JSON Object");
-            Log.i(QueryWikipediaJson.class.getSimpleName(), exception.getMessage());
+            Log.i(QueryJsonFormWeb.class.getSimpleName(), exception.getMessage());
         }
         return jsonToReturn;
     }

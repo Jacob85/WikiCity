@@ -1,11 +1,16 @@
 package il.ac.bl;
 
 import android.util.Log;
+import il.ac.shenkar.common.CityInfo;
+import il.ac.shenkar.common.Logger;
+import il.ac.shenkar.common.WikiPageSection;
+import il.ac.shenker.wiki.WikiConsts;
 import il.ac.shenker.wiki.WikiImageInfo;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -108,7 +113,7 @@ public class JsonParserUtil
         return mapToReturn;
     }
 
-    public static void  parseDBPediaJson(JSONObject json)
+  /*  public static void  parseDBPediaJson(JSONObject json)
     {
         Iterator<?> keys = json.keys();
         while (keys.hasNext())
@@ -116,6 +121,106 @@ public class JsonParserUtil
 
         }
 
+    }*/
+
+    public static void parseDbpediaJson (CityInfo.CityInfoBuilder builder, JSONObject json)
+    {
+        if (builder == null || json == null)
+            return;
+        try
+        {
+            Iterator<?> keys = json.keys();
+            // get the resource json Object
+            JSONObject resourceJson = json.getJSONObject((String)keys.next());
+            builder.cityName(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_NAME)));
+            builder.utcOffset(parseInt(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_UTC_OFFSET))));
+            builder.establishedDate(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_ESTABLISHED_DATE)));
+            builder.countryName(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_COUNTRY)));
+            builder.cityWebSite(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_WEB_SITE_URL)));
+            builder.geoLocation(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_LAT)),getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_LANG)));
+            builder.imageFlagName(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_IMAGE_FLAG_NAME)));
+            builder.imageMapName(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_IMAGE_MAP_NAME)));
+            builder.imageSealName(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_IMAGE_SEAL_NAME)));
+            builder.imageSky(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_IMAGE_SKY_LINE)));
+            builder.wikiOrigPageUrl(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_ORIGINAL_WIKI_PAGE_URL)));
+            builder.postalCode(parseInt(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_POSTAL_CODE))));
+            builder.totalPopulation(parseLong(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_TOTAL_POPULATION))));
+            builder.wikipageId(parseInt(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_WIKI_ID))));
+            builder.wikiRevisionId(parseInt(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_WIKI_REVISION_ID))));
+            builder.nickName(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_NICK_NAME)));
+            builder.region(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_COORDINATES_REGION)));
+            builder.waterAreaPercentage(parseDouble(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_WATER_AREA_PERCENTAGE))));
+            builder.numberofRainDaysAyear(parseDouble(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_NUMBER_OF_RAIN_DAYS_YEAR))));
+            builder.yearMinTemp(parseDouble(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_YEAR_MIN_TEMP))));
+            builder.yearMaxTemp(parseDouble(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_YEAR_MAX_TEMP))));
+            //special cases
+            builder.addPageSection(new WikiPageSection(getOnlyEnglishDataFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_GENERAL_INFO)), "General Info"));
+            //external Links
+            Collection<String> externalLinks = getAllValuesFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_WIKI_EXTERNAL_LINKS));
+            for (String urlString : externalLinks)
+            {
+                builder.addExternalLink(new URL(urlString));
+            }
+
+
+
+        }catch (Exception e)
+        {
+            Logger.logException(e);
+            return;
+        }
+
+    }
+    private static String getOnlyEnglishDataFromJsonArray(JSONArray jsonArray) throws JSONException
+    {
+        JSONObject currJson;
+        for (int i=0; i < jsonArray.length() ; i++)
+        {
+            currJson = (JSONObject) jsonArray.get(i);
+            if ("en".equals(currJson.getString("lang")))
+            {
+                //this is the english object, return the value
+                return currJson.getString("value");
+            }
+        }
+        return null;
+    }
+    private static String getFirstValueFromJsonArray(JSONArray jsonArray) throws JSONException
+    {
+        JSONObject firstJsonObject = (JSONObject)jsonArray.get(0);
+        return firstJsonObject.getString("value");
+    }
+    private static Collection<String> getAllValuesFromJsonArray (JSONArray jsonArray) throws JSONException
+    {
+        ArrayList<String> valuesList = new ArrayList<String>();
+        JSONObject currJson;
+        for (int i=0; i < jsonArray.length() ; i++)
+        {
+            currJson = (JSONObject) jsonArray.get(i);
+            valuesList.add(currJson.getString("value"));
+        }
+        return valuesList;
+    }
+    private static int parseInt(String string)
+    {
+        if (string == null)
+            return 0;
+        string = string.replace("?","-");
+        return Integer.parseInt(string);
+    }
+    private static long parseLong(String string)
+    {
+        if (string == null)
+            return(long) 0;
+        string = string.replace("?","-");
+        return Long.parseLong(string);
+    }
+    private static double parseDouble(String string)
+    {
+        if (string == null)
+            return 0;
+        string = string.replace("?","-");
+        return Double.parseDouble(string);
     }
 
 }

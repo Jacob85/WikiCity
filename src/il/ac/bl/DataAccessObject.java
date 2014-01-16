@@ -3,8 +3,9 @@ package il.ac.bl;
 import android.util.Log;
 import il.ac.exceptions.QueryException;
 import il.ac.services.IWikiQuery;
-import il.ac.services.QueryWikipediaJson;
+import il.ac.services.QueryJsonFormWeb;
 import il.ac.services.QueryWikipediaCallback;
+import il.ac.shenkar.common.CityInfo;
 import il.ac.shenkar.common.URLWithCallback;
 import org.json.JSONObject;
 
@@ -21,11 +22,11 @@ public class DataAccessObject implements IWikiQuery
 {
 
     private static DataAccessObject instance;
-    private QueryWikipediaJson queryWikipediaJson;
+    private QueryJsonFormWeb queryJsonFormWeb;
 
     private DataAccessObject ()
     {
-       queryWikipediaJson = new QueryWikipediaJson();
+       queryJsonFormWeb = new QueryJsonFormWeb();
     }
 
     public static DataAccessObject getInstance()
@@ -39,7 +40,7 @@ public class DataAccessObject implements IWikiQuery
     public void queryCityJson(URL urlToQuery, final QueryWikipediaCallback<JSONObject> callback) throws QueryException
     {
             //todo yaki - refactor, pass thw received callback to the query object instead of creating new one
-            queryWikipediaJson.execute(new URLWithCallback(new QueryWikipediaCallback()
+            queryJsonFormWeb.execute(new URLWithCallback(new QueryWikipediaCallback()
             {
                 @Override
                 public void done(Object returnedObject, Exception e)
@@ -61,9 +62,29 @@ public class DataAccessObject implements IWikiQuery
     @Override
     public void queryImageFromCity(URL urlToQuery, QueryWikipediaCallback<JSONObject> callback)
     {
-        queryWikipediaJson.execute(new URLWithCallback(callback, urlToQuery));
+        queryJsonFormWeb.execute(new URLWithCallback(callback, urlToQuery));
 
     }
 
+    @Override
+    public void getCityInfo(String cityName, final QueryWikipediaCallback<CityInfo> callback)
+    {
+        QueryJsonFormWeb queryJsonFormWeb1 = new QueryJsonFormWeb();
+        queryJsonFormWeb1.execute(new URLWithCallback(new QueryWikipediaCallback()
+        {
+            @Override
+            public void done(Object returnedObject, Exception e)
+            {
+                if (returnedObject == null && e != null)
+                    callback.done(null, e);
+
+                CityInfo.CityInfoBuilder cityInfoBuilder = new CityInfo.CityInfoBuilder();
+                JsonParserUtil.parseDbpediaJson(cityInfoBuilder, (JSONObject)returnedObject);
+                callback.done(cityInfoBuilder.build(), null);
+            }
+        }, QueryUrlGenerator.generateDbpediaQueryUrlForCity(cityName)));
+
+
+    }
 
 }

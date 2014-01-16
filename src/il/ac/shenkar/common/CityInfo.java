@@ -6,10 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Amsalem on 16/01/14.
@@ -19,13 +16,14 @@ public class CityInfo
     private String cityName;
     private String nickName;
     private String region;           //CA-US
-    private String yearMinTemp;
+    private double yearMinTemp;
+    private double yearMaxTemp;
     private String imageSealWikiName;
     private String imageFlagWikiName;
     private String imageMapWikiName;
     private Date establishedDate;
-    private String countryName;
-    private URL imageSkyLineUrl;
+    private URL countryNameUrl;
+    private String imageSkyLine;
     private URL cityWebSite;
     private URL wikiOrigPageUrl;
     private double waterAreaPercentage;
@@ -34,10 +32,47 @@ public class CityInfo
     private int wikiPageId;
     private long totalPopulation;
     private int postalCode;
-    private int numberOfRainDaysAyear;
+    private double numberOfRainDaysAyear;
     private List<WikiPageSection> pageSections;
     private List<URL> wikiExternalLinksList;
     private LatLng geoLocation;
+
+    private CityInfo(CityInfoBuilder builder)
+    {
+        this.cityName = builder.cityName;
+        this.nickName = builder.nickName;
+        this.region = builder.region;
+        this.yearMaxTemp = builder.yearMaxTemp;
+        this.yearMinTemp = builder.yearMinTemp;
+        this.imageFlagWikiName = builder.imageFlagWikiName;
+        this.imageMapWikiName = builder.imageMapWikiName;
+        this.imageSealWikiName = builder.imageSealWikiName;
+        this.establishedDate = builder.establishedDate;
+        this.countryNameUrl = builder.countryNameUrl;
+        this.imageSkyLine = builder.imageSkyLine;
+        this.cityWebSite = builder.cityWebSite;
+        this.wikiOrigPageUrl = builder.wikiOrigPageUrl;
+        this.waterAreaPercentage = builder.waterAreaPercentage;
+        this.utcOffset = builder.utcOffset;
+        this.wikiRevisionId = builder.wikiRevisionId;
+        this.wikiPageId = builder.wikiPageId;
+        this.totalPopulation = builder.totalPopulation;
+        this.postalCode = builder.postalCode;
+        this.numberOfRainDaysAyear = builder.numberOfRainDaysAyear;
+        this.pageSections = builder.pageSections;
+        this.wikiExternalLinksList = builder.wikiExternalLinksList;
+        this.geoLocation = builder.geoLocation;
+
+    }
+
+
+    public double getYearMaxTemp() {
+        return yearMaxTemp;
+    }
+
+    public void setYearMaxTemp(int yearMaxTemp) {
+        this.yearMaxTemp = yearMaxTemp;
+    }
 
     public String getCityName() {
         return cityName;
@@ -63,11 +98,11 @@ public class CityInfo
         this.region = region;
     }
 
-    public String getYearMinTemp() {
+    public double getYearMinTemp() {
         return yearMinTemp;
     }
 
-    public void setYearMinTemp(String yearMinTemp) {
+    public void setYearMinTemp(int yearMinTemp) {
         this.yearMinTemp = yearMinTemp;
     }
 
@@ -103,20 +138,20 @@ public class CityInfo
         this.establishedDate = establishedDate;
     }
 
-    public String getCountryName() {
-        return countryName;
+    public URL getCountryNameUrl() {
+        return countryNameUrl;
     }
 
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
+    public void setCountryNameUrl(URL countryNameUrl) {
+        this.countryNameUrl = countryNameUrl;
     }
 
-    public URL getImageSkyLineUrl() {
-        return imageSkyLineUrl;
+    public String getImageSkyLine() {
+        return imageSkyLine;
     }
 
-    public void setImageSkyLineUrl(URL imageSkyLineUrl) {
-        this.imageSkyLineUrl = imageSkyLineUrl;
+    public void setImageSkyLine(String imageSkyLine) {
+        this.imageSkyLine = imageSkyLine;
     }
 
     public URL getCityWebSite() {
@@ -183,7 +218,7 @@ public class CityInfo
         this.postalCode = postalCode;
     }
 
-    public int getNumberOfRainDaysAyear() {
+    public double getNumberOfRainDaysAyear() {
         return numberOfRainDaysAyear;
     }
 
@@ -220,13 +255,14 @@ public class CityInfo
         private String cityName;
         private String nickName;
         private String region;           //CA-US
-        private String yearMinTemp;
+        private double yearMinTemp;
+        private double yearMaxTemp;
         private String imageSealWikiName;
         private String imageFlagWikiName;
         private String imageMapWikiName;
         private Date establishedDate;
-        private String countryName;
-        private URL imageSkyLineUrl;
+        private URL countryNameUrl;
+        private String imageSkyLine;
         private URL cityWebSite;
         private URL wikiOrigPageUrl;
         private double waterAreaPercentage;
@@ -235,7 +271,7 @@ public class CityInfo
         private int wikiPageId;
         private long totalPopulation;
         private int postalCode;
-        private int numberOfRainDaysAyear;
+        private double numberOfRainDaysAyear;
         private List<WikiPageSection> pageSections;
         private List<URL> wikiExternalLinksList;
         private LatLng geoLocation;
@@ -257,9 +293,14 @@ public class CityInfo
             this.region = region;
             return this;
         }
-        public CityInfoBuilder yearMinTemp (String yearMinTemp)
+        public CityInfoBuilder yearMinTemp (double yearMinTemp)
         {
             this.yearMinTemp = yearMinTemp;
+            return this;
+        }
+        public CityInfoBuilder yearMaxTemp (double yearMaxTemp)
+        {
+            this.yearMaxTemp = yearMaxTemp;
             return this;
         }
         public CityInfoBuilder imageSealName(String imageSealWikiName)
@@ -269,7 +310,7 @@ public class CityInfo
         }
         public CityInfoBuilder imageFlagName(String imageSealWikiName)
         {
-            this.imageSealWikiName = imageSealWikiName;
+            this.imageFlagWikiName = imageSealWikiName;
             return this;
         }
         public CityInfoBuilder imageMapName (String imageMapWikiName)
@@ -292,19 +333,19 @@ public class CityInfo
         }
         public CityInfoBuilder countryName(String countryName)
         {
-            this.countryName = countryName;
-            return this;
-        }
-        public CityInfoBuilder imageSkyUrl(String url)
-        {
             try
             {
-                this.imageSkyLineUrl = new URL(url);
+                this.countryNameUrl = new URL(countryName);
             } catch (MalformedURLException e)
             {
                 Logger.logException(e);
-                this.imageSkyLineUrl = null;
+                this.countryNameUrl = null;
             }
+            return this;
+        }
+        public CityInfoBuilder imageSky(String name)
+        {
+           this.imageSkyLine = name;
             return this;
         }
         public CityInfoBuilder cityWebSite (String url)
@@ -318,6 +359,76 @@ public class CityInfo
                 this.cityWebSite = null;
             }
             return this;
+        }
+        public CityInfoBuilder wikiOrigPageUrl(String url)
+        {
+            try
+            {
+                this.wikiOrigPageUrl = new URL(url);
+            } catch (MalformedURLException e)
+            {
+                Logger.logException(e);
+                this.wikiOrigPageUrl = null;
+            }
+            return this;
+        }
+        public CityInfoBuilder waterAreaPercentage (double waterAreaPercentage)
+        {
+            this.waterAreaPercentage = waterAreaPercentage;
+            return this;
+        }
+        public CityInfoBuilder utcOffset (int utcOffset)
+        {
+            this.utcOffset = utcOffset;
+            return this;
+        }
+        public CityInfoBuilder wikiRevisionId(int wikiRevisionId)
+        {
+            this.wikiRevisionId = wikiRevisionId;
+            return this;
+        }
+        public CityInfoBuilder wikipageId(int wikiPageId)
+        {
+            this.wikiPageId = wikiPageId;
+            return this;
+        }
+        public CityInfoBuilder totalPopulation (long totalPopulation)
+        {
+            this.totalPopulation = totalPopulation;
+            return this;
+        }
+        public CityInfoBuilder postalCode (int postalCode)
+        {
+            this.postalCode = postalCode;
+            return this;
+        }
+        public CityInfoBuilder numberofRainDaysAyear(double numberOfRainDaysAyear)
+        {
+            this.numberOfRainDaysAyear = numberOfRainDaysAyear;
+            return this;
+        }
+        public CityInfoBuilder addPageSection (WikiPageSection section)
+        {
+            if (this.pageSections == null)
+                this.pageSections = new ArrayList<WikiPageSection>();
+            this.pageSections.add(section);
+            return this;
+        }
+        public CityInfoBuilder addExternalLink (URL externalLink)
+        {
+            if (this.wikiExternalLinksList == null)
+                this.wikiExternalLinksList = new ArrayList<URL>();
+            this.wikiExternalLinksList.add(externalLink);
+            return this;
+        }
+        public CityInfoBuilder geoLocation (String latString, String lngString)
+        {
+            this.geoLocation = new LatLng(Double.parseDouble(latString), Double.parseDouble(lngString));
+            return this;
+        }
+        public CityInfo build()
+        {
+            return new CityInfo(this);
         }
     }
 
