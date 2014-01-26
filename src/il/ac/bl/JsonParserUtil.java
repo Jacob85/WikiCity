@@ -132,31 +132,31 @@ public class JsonParserUtil
             Iterator<?> keys = json.keys();
             // get the resource json Object
             JSONObject resourceJson = json.getJSONObject((String)keys.next());
-            builder.cityName(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_NAME)));
-            builder.utcOffset(parseInt(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_UTC_OFFSET))));
-            builder.establishedDate(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_ESTABLISHED_DATE)));
-            builder.countryName(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_COUNTRY)));
-            builder.cityWebSite(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_WEB_SITE_URL)));
-            builder.geoLocation(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_LAT)),getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_LANG)));
-            builder.imageFlagName(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_IMAGE_FLAG_NAME)));
-            builder.imageMapName(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_IMAGE_MAP_NAME)));
-            builder.imageSealName(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_IMAGE_SEAL_NAME)));
-            builder.imageSky(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_IMAGE_SKY_LINE)));
-            builder.wikiOrigPageUrl(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_ORIGINAL_WIKI_PAGE_URL)));
-            builder.postalCode(parseInt(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_POSTAL_CODE))));
-            builder.totalPopulation(parseLong(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_TOTAL_POPULATION))));
-            builder.wikipageId(parseInt(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_WIKI_ID))));
-            builder.wikiRevisionId(parseInt(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_WIKI_REVISION_ID))));
-            builder.nickName(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_NICK_NAME)));
-            builder.region(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_COORDINATES_REGION)));
-            builder.waterAreaPercentage(parseDouble(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_WATER_AREA_PERCENTAGE))));
-            builder.numberofRainDaysAyear(parseDouble(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_NUMBER_OF_RAIN_DAYS_YEAR))));
-            builder.yearMinTemp(parseDouble(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_YEAR_MIN_TEMP))));
-            builder.yearMaxTemp(parseDouble(getFirstValueFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_YEAR_MAX_TEMP))));
+            builder.cityName(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_NAME));
+            builder.utcOffset(parseInt(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_UTC_OFFSET)));
+            builder.establishedDate(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_ESTABLISHED_DATE));
+            builder.countryName(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_COUNTRY));
+            builder.cityWebSite(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_WEB_SITE_URL));
+            builder.geoLocation(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_LAT),getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_LANG));
+            builder.imageFlagName(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_IMAGE_FLAG_NAME));
+            builder.imageMapName(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_IMAGE_MAP_NAME));
+            builder.imageSealName(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_IMAGE_SEAL_NAME));
+            builder.imageSky(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_IMAGE_SKY_LINE));
+            builder.wikiOrigPageUrl(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_ORIGINAL_WIKI_PAGE_URL));
+            builder.postalCode(parseInt(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_POSTAL_CODE)));
+            builder.totalPopulation(parseLong(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_TOTAL_POPULATION)));
+            builder.wikipageId(parseInt(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_WIKI_ID)));
+            builder.wikiRevisionId(parseInt(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_WIKI_REVISION_ID)));
+            builder.nickName(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_NICK_NAME));
+            builder.region(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_COORDINATES_REGION));
+            builder.waterAreaPercentage(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_WATER_AREA_PERCENTAGE)));
+            builder.numberofRainDaysAyear(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_NUMBER_OF_RAIN_DAYS_YEAR)));
+            builder.yearMinTemp(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_YEAR_MIN_TEMP)));
+            builder.yearMaxTemp(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_YEAR_MAX_TEMP)));
             //special cases
-            builder.addPageSection(new WikiPageSection(getOnlyEnglishDataFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_GENERAL_INFO)), "General Info"));
+            builder.addPageSection(new WikiPageSection(getOnlyEnglishDataFromJsonArray(resourceJson, WikiConsts.CITY_GENERAL_INFO), "General Info"));
             //external Links
-            Collection<String> externalLinks = getAllValuesFromJsonArray(resourceJson.getJSONArray(WikiConsts.CITY_WIKI_EXTERNAL_LINKS));
+            Collection<String> externalLinks = getAllValuesFromJsonArray(resourceJson, WikiConsts.CITY_WIKI_EXTERNAL_LINKS);
             for (String urlString : externalLinks)
             {
                 builder.addExternalLink(new URL(urlString));
@@ -171,35 +171,63 @@ public class JsonParserUtil
         }
 
     }
-    private static String getOnlyEnglishDataFromJsonArray(JSONArray jsonArray) throws JSONException
+    private static String getOnlyEnglishDataFromJsonArray(JSONObject rootJson, String key)
     {
-        JSONObject currJson;
-        for (int i=0; i < jsonArray.length() ; i++)
+        try
         {
-            currJson = (JSONObject) jsonArray.get(i);
-            if ("en".equals(currJson.getString("lang")))
+            JSONArray jsonArray = rootJson.getJSONArray(key);
+            JSONObject currJson;
+            for (int i=0; i < jsonArray.length() ; i++)
             {
-                //this is the english object, return the value
-                return currJson.getString("value");
+                currJson = (JSONObject) jsonArray.get(i);
+                if ("en".equals(currJson.getString("lang")))
+                {
+                    //this is the english object, return the value
+                    return currJson.getString("value");
+                }
             }
-        }
-        return null;
-    }
-    private static String getFirstValueFromJsonArray(JSONArray jsonArray) throws JSONException
-    {
-        JSONObject firstJsonObject = (JSONObject)jsonArray.get(0);
-        return firstJsonObject.getString("value");
-    }
-    private static Collection<String> getAllValuesFromJsonArray (JSONArray jsonArray) throws JSONException
-    {
-        ArrayList<String> valuesList = new ArrayList<String>();
-        JSONObject currJson;
-        for (int i=0; i < jsonArray.length() ; i++)
+            return null;
+        }catch (JSONException e)
         {
-            currJson = (JSONObject) jsonArray.get(i);
-            valuesList.add(currJson.getString("value"));
+            Logger.logError("Error Occered while trying to parse: " + key);
+            Logger.logException(e);
+            return null;
         }
-        return valuesList;
+    }
+    private static String getFirstValueFromJsonArray(JSONObject rootJson, String key)
+    {
+       try
+       {
+           JSONArray jsonArray = rootJson.getJSONArray(key);
+           JSONObject firstJsonObject = (JSONObject)jsonArray.get(0);
+           return firstJsonObject.getString("value");
+       } catch (JSONException e)
+       {
+           Logger.logError("Error Occered while trying to parse: " + key);
+           Logger.logException(e);
+           return null;
+       }
+    }
+    private static Collection<String> getAllValuesFromJsonArray (JSONObject rootJson, String key)
+    {
+        try
+        {
+            JSONArray jsonArray = rootJson.getJSONArray(key);
+            ArrayList<String> valuesList = new ArrayList<String>();
+            JSONObject currJson;
+            for (int i=0; i < jsonArray.length() ; i++)
+            {
+                currJson = (JSONObject) jsonArray.get(i);
+                valuesList.add(currJson.getString("value"));
+            }
+            return valuesList;
+        }
+        catch (JSONException e)
+        {
+            Logger.logError("Error Occered while trying to parse: " + key);
+            Logger.logException(e);
+            return null;
+        }
     }
     private static int parseInt(String string)
     {
