@@ -1,26 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
+              android:orientation="vertical"
               android:layout_height="fill_parent"
+              android:gravity="center_horizontal"
+              android:background="@android:color/background_light"
         >
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="show main query"
-            android:id="@+id/showMainQuery"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="show Image query"
-            android:id="@+id/showimage"/>
-    <TextView android:id="@+id/justSomeText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-           android:layout_gravity="center"/>
+        <TextView android:id="@+id/time_zone"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/city_name"
+                  android:lines="1"
+                  android:textSize="15sp"
+                  android:rotation="-90"
+                  android:layout_marginLeft="15dp"
+                  android:layout_alignBottom="@+id/city_name"
+                  android:layout_alignParentTop="true"
+                  android:layout_alignParentLeft="true"/>
 
 
-</LinearLayout>
+        <TextView android:id="@+id/city_name"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/city_name"
+                  android:textSize="80sp"
+                  android:gravity="center_horizontal"
+                  android:layout_centerHorizontal="true"/>
+
+        <TextView android:id="@+id/sub_title"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:textSize="40sp"
+                  android:layout_below="@id/city_name"
+                  android:gravity="center_horizontal"
+                  android:text="@string/year_established"/>
+
+        <TextView android:id="@+id/background_title"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@android:color/black"
+                  android:layout_below="@id/sub_title"
+                  android:gravity="center_horizontal"
+                  android:textSize="20sp"
+                  android:text="@string/district_state"/>
+
+        <!--<Button-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="show main query"-->
+                <!--android:id="@+id/showMainQuery"/>-->
+        <!--<Button-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="show Image query"-->
+                <!--android:id="@+id/showimage"/>-->
+
+            <ImageView
+                    android:id="@+id/mayor_image"
+                    android:layout_below="@id/background_title"
+                    android:layout_margin="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/newyork"
+                    />
+
+
+        <LinearLayout
+                android:id="@+id/story_layout"
+                android:layout_toRightOf="@id/mayor_image"
+                android:layout_below="@id/background_title"
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView android:id="@+id/story_text"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+
+                      android:gravity="left"
+                      android:textSize="70sp"
+                      android:text="@string/story"/>
+
+            <TextView android:id="@+id/mayor_name"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="10dp"
+                      android:gravity="left"
+                      android:textSize="22sp"
+                      android:text="@string/story"/>
+
+            <TextView android:id="@+id/mayor_lastname"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="10dp"
+                      android:gravity="left"
+                      android:textSize="20sp"
+                      android:text="@string/story"/>
+        </LinearLayout>
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentBottom="true"
+            android:text="@string/site"
+            android:gravity="bottom|left"/>
+
+</RelativeLayout>
 

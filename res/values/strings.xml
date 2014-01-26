@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WikiCity</string>
+    <string name="city_name">CITY NAME</string>
+    <string name="year_established">Year Established</string>
+    <string name="district_state">District/State</string>
+    <string name="story">Story</string>
+    <string name="site">www.citysite.com</string>
 </resources>
