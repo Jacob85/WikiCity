@@ -16,7 +16,7 @@ public class DownloadImageTask extends AsyncTask<URL, Void, Bitmap> {
     ImageView bmImage;
 
     /**
-     *  create Object from this class, send it an object to populate and a URL to Query the image from and the Task wil load the image to the Image View once it done;
+     * create Object from this class, send it an object to populate and a URL to Query the image from and the Task wil load the image to the Image View once it done;
      * @param bmImage - The Object to populate
      */
     public DownloadImageTask(ImageView bmImage)
@@ -36,12 +36,13 @@ public class DownloadImageTask extends AsyncTask<URL, Void, Bitmap> {
         {
             InputStream in = urls[0].openStream();
             mIcon11 = BitmapFactory.decodeStream(in);
+            return mIcon11;
         } catch (Exception e)
         {
             Logger.logException(e);
             e.printStackTrace();
         }
-        return mIcon11;
+        return null;
     }
 
     protected void onPostExecute(Bitmap result)
