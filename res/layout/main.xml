@@ -4,8 +4,7 @@
               android:orientation="vertical"
               android:layout_height="fill_parent"
               android:gravity="center_horizontal"
-              android:background="@android:color/background_light"
-        >
+              android:background="@android:color/background_light">
 
         <TextView android:id="@+id/time_zone"
                   android:layout_width="wrap_content"
@@ -42,28 +41,17 @@
                   android:background="@android:color/black"
                   android:layout_below="@id/sub_title"
                   android:gravity="center_horizontal"
+                  android:layout_margin="10dp"
                   android:textSize="20sp"
                   android:text="@string/district_state"/>
 
-        <!--<Button-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="show main query"-->
-                <!--android:id="@+id/showMainQuery"/>-->
-        <!--<Button-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="show Image query"-->
-                <!--android:id="@+id/showimage"/>-->
-
-            <ImageView
-                    android:id="@+id/mayor_image"
-                    android:layout_below="@id/background_title"
-                    android:layout_margin="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/newyork"
-                    />
+        <ImageView
+                android:id="@+id/mayor_image"
+                android:layout_below="@id/background_title"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/newyork"/>
 
 
         <LinearLayout
@@ -78,7 +66,6 @@
             <TextView android:id="@+id/story_text"
                       android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
-
                       android:gravity="left"
                       android:textSize="70sp"
                       android:text="@string/story"/>
@@ -101,6 +88,21 @@
         </LinearLayout>
 
     <TextView
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/story_layout"
+            android:text="@string/site"/>
+
+    <ImageView
+            android:id="@+id/pop_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/test"
+            android:src="@drawable/newyork"/>
+
+    <TextView
+            android:id="@+id/site_text"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
