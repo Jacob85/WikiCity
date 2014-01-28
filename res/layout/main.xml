@@ -99,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/test"
-            android:src="@drawable/newyork"/>
+            android:src="@drawable/pop"/>
 
     <TextView
             android:id="@+id/site_text"
@@ -109,6 +109,16 @@
             android:layout_alignParentBottom="true"
             android:text="@string/site"
             android:gravity="bottom|left"/>
+
+    <View
+            android:id="@+id/"
+            android:layout_width="fill_parent"
+            android:background="@android:color/black"
+            android:layout_above="@id/site_text"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_height="2dp"/>
 
 </RelativeLayout>
 
