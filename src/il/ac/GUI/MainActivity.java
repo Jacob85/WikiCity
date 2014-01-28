@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
         cityName= (TextView)findViewById(R.id.city_name);
         populationNumber = (TextView)findViewById(R.id.population_number);
         citySite = (TextView) findViewById(R.id.site_text);
-        yearEstablish = (TextView) findViewById(R.id.sub_title);
+//        yearEstablish = (TextView) findViewById(R.id.sub_title);
 
         DataAccessObject.getInstance().getCityInfo("Los Angeles",new QueryWikipediaCallback<CityInfo>() {
             @Override
@@ -53,9 +53,9 @@ public class MainActivity extends Activity {
         if(cityInfo.getCityWebSite() != null)
             citySite.setText(cityInfo.getCityWebSite().toString());
 
-        if(cityInfo.getEstablishedDate() != null) {
-            calendar.setTime(cityInfo.getEstablishedDate());
-            yearEstablish.setText(calendar.get(Calendar.YEAR));
-        }
+//        if(cityInfo.getEstablishedDate() != null) {
+//            calendar.setTime(cityInfo.getEstablishedDate());
+//            yearEstablish.setText(calendar.get(Calendar.YEAR));
+//        }
     }
 }
