@@ -5,5 +5,7 @@
     <string name="year_established">Year Established</string>
     <string name="district_state">District/State</string>
     <string name="story">Story</string>
+    <string name="area">Area</string>
+    <string name="population">Population</string>
     <string name="site">www.citysite.com</string>
 </resources>

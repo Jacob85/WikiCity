@@ -14,6 +14,7 @@
                   android:textSize="15sp"
                   android:rotation="-90"
                   android:layout_marginLeft="15dp"
+                  android:layout_marginTop="15dp"
                   android:layout_alignBottom="@+id/city_name"
                   android:layout_alignParentTop="true"
                   android:layout_alignParentLeft="true"/>
@@ -23,14 +24,14 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/city_name"
-                  android:textSize="80sp"
+                  android:textSize="70sp"
                   android:gravity="center_horizontal"
                   android:layout_centerHorizontal="true"/>
 
         <TextView android:id="@+id/sub_title"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
-                  android:textSize="40sp"
+                  android:textSize="30sp"
                   android:layout_below="@id/city_name"
                   android:gravity="center_horizontal"
                   android:text="@string/year_established"/>
@@ -88,18 +89,45 @@
         </LinearLayout>
 
     <TextView
-            android:id="@+id/test"
+            android:id="@+id/population_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/story_layout"
-            android:text="@string/site"/>
+            android:layout_marginRight="10dp"
+            android:textSize="40sp"
+            android:layout_alignParentRight="true"
+            android:text="@string/population"/>
 
     <ImageView
             android:id="@+id/pop_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/test"
+            android:layout_below="@+id/population_title"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
             android:src="@drawable/pop"/>
+
+    <TextView
+            android:id="@+id/area_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@id/population_title"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/story_layout"
+            android:textSize="90dp"
+            android:gravity="center"
+            android:text="@string/area"/>
+    <TextView
+            android:id="@+id/population_number"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/area_text"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:text="@string/area"/>
 
     <TextView
             android:id="@+id/site_text"
