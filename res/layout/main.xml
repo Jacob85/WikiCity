@@ -111,7 +111,7 @@
             android:gravity="bottom|left"/>
 
     <View
-            android:id="@+id/"
+            android:id="@+id/line"
             android:layout_width="fill_parent"
             android:background="@android:color/black"
             android:layout_above="@id/site_text"
