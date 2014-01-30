@@ -1,9 +1,11 @@
 package il.ac.bl;
 
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import il.ac.shenkar.common.CityInfo;
 import il.ac.shenkar.common.Logger;
 import il.ac.shenkar.common.WikiPageSection;
+import il.ac.shenker.wiki.PageSection;
 import il.ac.shenker.wiki.WikiConsts;
 import il.ac.shenker.wiki.WikiImageInfo;
 import org.json.JSONArray;
@@ -11,10 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -54,6 +53,78 @@ public class JsonParserUtil
         }
 
         return collectionToReturn;
+    }
+
+    public static List<PageSection> parseWikiPageSections(JSONObject json)
+    {
+        if (json == null)
+            return null;
+        List<PageSection> pageSections = new ArrayList<PageSection>();
+        try
+        {
+            JSONObject parse = json.getJSONObject("parse");
+            JSONArray sections = parse.getJSONArray("sections");
+            JSONObject currSection;
+            for (int i=0; i< sections.length(); i++)
+            {
+                currSection = sections.getJSONObject(i);
+                PageSection pageSection = new PageSection();
+                pageSection.setSectionName(currSection.getString("anchor"));
+                pageSection.setIndexforQuery(currSection.getInt("index"));
+                pageSection.setSectionNumber(currSection.getString("number"));
+                addToSectionsList(pageSections, pageSection);
+            }
+        }catch (JSONException e)
+        {
+            Logger.logException(e);
+        }
+    return pageSections;
+    }
+    private static void addToSectionsList (List<PageSection> pageSections, PageSection pageSection)
+    {
+        if (pageSection == null)
+            return;
+        if (pageSections.isEmpty())
+        {
+            pageSections.add(pageSection);
+            return;
+        }
+        String sectionNumber = pageSection.getSectionNumber();
+        if (!sectionNumber.contains("."))
+        {
+            pageSections.add(pageSection);
+            return;
+        }
+        else
+        {
+            String [] subsections = sectionNumber.split("\\.");
+            if (subsections.length == 2)
+            {
+                //mean we got only one point like: "1.2"
+                for (PageSection tmpSection : pageSections)
+                {
+                    if (tmpSection.getSectionNumber().equals(subsections[0]))
+                        tmpSection.appendSubSection(pageSection);
+                }
+            }
+            else
+            {
+                // we got 2 points
+                for (PageSection tmpSection : pageSections)
+                {
+                    if (pageSection.getSectionName().equals(subsections[0]))
+                    {
+                        for (PageSection subSubSection : tmpSection.getSubSections())
+                        {
+                            if (subSubSection.getSectionNumber().equals(subsections[1]))
+                                subSubSection.appendSubSection(pageSection);
+                        }
+                    }
+                }
+            }
+
+        }
+
     }
     public static HashMap<String, String> parseJsonToHashMap(JSONObject json)
     {

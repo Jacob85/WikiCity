@@ -1,3 +1,6 @@
 Images URL
 https://en.wikipedia.org/wiki/File:Flag_of_Los_Angeles,_California.svg
 (file name is Flag of Los Angeles, California.svg)
+
+Sections URL
+http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=sections&page=Los%20Angeles

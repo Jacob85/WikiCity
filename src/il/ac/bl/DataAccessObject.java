@@ -8,6 +8,7 @@ import il.ac.services.QueryWikipediaCallback;
 import il.ac.shenkar.common.CityInfo;
 import il.ac.shenkar.common.Logger;
 import il.ac.shenkar.common.URLWithCallback;
+import il.ac.shenker.wiki.PageSection;
 import il.ac.shenker.wiki.WikiImageInfo;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -91,6 +92,30 @@ public class DataAccessObject implements IWikiQuery
 
 
     }
+    @Override
+    public void getCityWikipediaSections(String cityName, final QueryWikipediaCallback<List<PageSection>> callback )
+    {
+        if (cityName == null || cityName.isEmpty())
+            callback.done(null, new QueryException("city name is null or empty"));
+
+        QueryJsonFormWeb queryJsonFormWeb1 = new QueryJsonFormWeb();
+        URL url = QueryUrlGenerator.generateSectionsQuery(cityName);
+        queryJsonFormWeb1.execute(new URLWithCallback(new QueryWikipediaCallback() {
+            @Override
+            public void done(Object returnedObject, Exception e)
+            {
+                if (returnedObject != null && e == null)
+                {
+                    List<PageSection> sections = JsonParserUtil.parseWikiPageSections((JSONObject) returnedObject);
+                    callback.done(sections, e);  // e == null
+                }
+                else
+                    callback.done(null,e);
+            }
+        }, url));
+
+
+    }
 
     @Override
     public void getImagesUrl(final QueryWikipediaCallback<List<WikiImageInfo>> callback, String... imagesNames)
@@ -122,5 +147,7 @@ public class DataAccessObject implements IWikiQuery
         else
             callback.done(null, new QueryException("Error in Queryng Images URL, No Names received..."));
     }
+
+
 
 }

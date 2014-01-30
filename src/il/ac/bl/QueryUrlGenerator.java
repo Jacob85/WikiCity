@@ -55,4 +55,18 @@ public class QueryUrlGenerator
         }
         return url;
     }
+
+    public static URL generateSectionsQuery(String cityName)
+    {
+        cityName = cityName.replaceAll(" ", WikiConsts.SPACE);
+        URL url = null;
+        try
+        {
+            url = new URL("http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=sections&page=" + cityName);
+        } catch (MalformedURLException e)
+        {
+            Logger.logException(e);
+        }
+        return url;
+    }
 }
