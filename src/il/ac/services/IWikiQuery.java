@@ -2,9 +2,11 @@ package il.ac.services;
 
 import il.ac.exceptions.QueryException;
 import il.ac.shenkar.common.CityInfo;
+import il.ac.shenker.wiki.WikiImageInfo;
 import org.json.JSONObject;
 
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,6 +18,7 @@ import java.net.URL;
 public interface IWikiQuery
 {
     public void queryCityJson(URL urlToQuery, QueryWikipediaCallback<JSONObject> callback) throws QueryException;
-    public void queryImageFromCity(URL urlToQuery, QueryWikipediaCallback<JSONObject> callback);
+    public void queryImageJsonFromCity(URL urlToQuery, QueryWikipediaCallback<JSONObject> callback);
     public void getCityInfo(String cityName, QueryWikipediaCallback<CityInfo> callback);
+    public void getImagesUrl(QueryWikipediaCallback<List <WikiImageInfo>> callback, String... imagesNames) ;
 }
