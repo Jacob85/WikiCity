@@ -234,7 +234,7 @@
         <View
             android:id="@+id/line"
             android:layout_width="fill_parent"
-            android:background="@android:color/background_dark"
+            android:background="@android:color/background_light"
             android:layout_above="@id/site_text"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
