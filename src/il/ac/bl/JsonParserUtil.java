@@ -240,6 +240,8 @@ public class JsonParserUtil
             builder.numberofRainDaysAyear(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_NUMBER_OF_RAIN_DAYS_YEAR)));
             builder.yearMinTemp(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_YEAR_MIN_TEMP)));
             builder.yearMaxTemp(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_YEAR_MAX_TEMP)));
+            builder.totalAreaKm(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_TOTAL_AREA_KM)));
+            builder.totalLandAreaKm(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_TOTAL_LAND_AREA_KM)));
             builder.cityGeneralInfo((getOnlyEnglishDataFromJsonArray(resourceJson, WikiConsts.CITY_GENERAL_INFO)));
 
             //external Links

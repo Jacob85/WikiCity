@@ -29,6 +29,8 @@ public class CityInfo
     private URL cityWebSite;
     private URL wikiOrigPageUrl;
     private double waterAreaPercentage;
+    private double totalAreaKm;
+    private double totalLandAreaKm;
     private int utcOffset;
     private int wikiRevisionId;
     private int wikiPageId;
@@ -65,6 +67,8 @@ public class CityInfo
         this.wikiExternalLinksList = builder.wikiExternalLinksList;
         this.geoLocation = builder.geoLocation;
         this.cityGeneralInfo = builder.cityGeneralInfo;
+        this.totalAreaKm = builder.totalAreaKm;
+        this.totalLandAreaKm = builder.totalLandAreaKm;
 
     }
 
@@ -290,6 +294,8 @@ public class CityInfo
         private URL cityWebSite;
         private URL wikiOrigPageUrl;
         private double waterAreaPercentage;
+        private double totalAreaKm;
+        private double totalLandAreaKm;
         private int utcOffset;
         private int wikiRevisionId;
         private int wikiPageId;
@@ -302,6 +308,16 @@ public class CityInfo
 
         public CityInfoBuilder() {};
 
+        public CityInfoBuilder totalAreaKm (double totalAreaKm)
+        {
+            this.totalAreaKm = totalAreaKm;
+            return this;
+        }
+        public CityInfoBuilder totalLandAreaKm(double totalLandAreaKm)
+        {
+            this.totalLandAreaKm = totalLandAreaKm;
+            return this;
+        }
         public CityInfoBuilder cityName(String name)
         {
             this.cityName = name;
