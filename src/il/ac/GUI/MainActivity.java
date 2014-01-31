@@ -10,14 +10,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.WikiCity.R;
 import java.util.Calendar;
+import java.util.List;
 
 import il.ac.bl.DataAccessObject;
+import il.ac.services.DownloadImageAsyncTask;
 import il.ac.services.QueryWikipediaCallback;
 import il.ac.shenkar.common.CityInfo;
 import il.ac.shenkar.common.Logger;
+import il.ac.shenker.wiki.WikiImageInfo;
 
 /**
  * Created by hannypeleg on 1/28/14.
@@ -74,6 +78,23 @@ public class MainActivity extends Activity {
 //        if(cityInfo.getUtcOffset() != 0) {
 //            timeZone.setText("GMT " + String.valueOf(cityInfo.getUtcOffset()));
 //        }
+        DataAccessObject.getInstance().getImagesUrl(new QueryWikipediaCallback<List<WikiImageInfo>>() {
+            @Override
+            public void done(List<WikiImageInfo> returnedObject, Exception e)
+            {
+                if (returnedObject != null)
+                {
+                    ImageView imageView = (ImageView) findViewById(R.id.right_twin);
+                    DownloadImageAsyncTask downloadImageAsyncTask = new DownloadImageAsyncTask(imageView);
+                    downloadImageAsyncTask.execute(returnedObject.get(0).getImageUrl());
+                }
+                else
+                {
+                    // display error message
+                    Logger.logException(e);
+                }
+            }
+        }, cityInfo.getImageFlagWikiName(), cityInfo.getImageSealWikiName(), cityInfo.getImageMapWikiName(), cityInfo.getImageSkyLine());
         Fragment fragment = new PlanetFragment();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
