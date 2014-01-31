@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">WikiCity</string>
     <string name="city_name">CITY NAME</string>
-    <string name="year_established">Year Established</string>
+    <string name="year_established">Year</string>
     <string name="district_state">District/State</string>
     <string name="story">Story</string>
     <string name="area">Area</string>

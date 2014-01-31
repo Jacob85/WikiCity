@@ -1,151 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:orientation="vertical"
-              android:layout_height="fill_parent"
+          android:layout_width="fill_parent"
+          android:orientation="vertical"
+          android:layout_height="fill_parent"
+          android:gravity="center_horizontal"
+          android:background="@android:color/background_dark">
+
+
+    <TextView android:id="@+id/city_name"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/city_name"
+              android:textSize="70sp"
               android:gravity="center_horizontal"
-              android:background="@android:color/background_light">
+              android:layout_centerHorizontal="true"/>
 
-        <TextView android:id="@+id/time_zone"
-                  android:layout_width="wrap_content"
+    <LinearLayout
+            android:id="@+id/sub_title_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/strict"
+            android:layout_below="@id/city_name"
+            android:layout_centerInParent="true"
+            >
+
+    <TextView android:id="@+id/sub_title"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="20sp"
+              android:layout_marginLeft="20dp"
+              android:layout_marginBottom="10dp"
+              android:text="@string/year_established"/>
+
+    <TextView android:id="@+id/sub_title"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="20dp"
+              android:layout_marginBottom="10dp"
+              android:gravity="end"
+              android:textSize="20sp"
+              android:text="@string/story"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:id="@+id/story_layout"
+            android:background="@drawable/back"
+            android:layout_below="@id/sub_title_layout"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView android:id="@+id/story_text"
+                  android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
-                  android:text="@string/city_name"
-                  android:lines="1"
-                  android:textSize="15sp"
-                  android:rotation="-90"
-                  android:layout_marginLeft="15dp"
-                  android:layout_marginTop="15dp"
-                  android:layout_alignBottom="@+id/city_name"
-                  android:layout_alignParentTop="true"
-                  android:layout_alignParentLeft="true"/>
-
-
-        <TextView android:id="@+id/city_name"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="@string/city_name"
+                  android:gravity="left"
+                  android:layout_gravity="center_vertical"
                   android:textSize="70sp"
-                  android:gravity="center_horizontal"
-                  android:layout_centerHorizontal="true"/>
+                  android:text="@string/story"/>
 
-        <TextView android:id="@+id/sub_title"
+        <TextView android:id="@+id/mayor_lastname"
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
-                  android:textSize="30sp"
-                  android:layout_below="@id/city_name"
-                  android:gravity="center_horizontal"
-                  android:text="@string/year_established"/>
-
-        <TextView android:id="@+id/background_title"
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:background="@android:color/black"
-                  android:layout_below="@id/sub_title"
-                  android:gravity="center_horizontal"
-                  android:layout_margin="10dp"
+                  android:layout_marginLeft="10dp"
+                  android:gravity="left"
                   android:textSize="20sp"
-                  android:text="@string/district_state"/>
+                  android:text="@string/story"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/links_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/story_layout"
+            android:layout_alignParentLeft="true"
+            android:orientation="vertical"
+            android:layout_above="@+id/twins_layout">
 
-        <ImageView
-                android:id="@+id/mayor_image"
-                android:layout_below="@id/background_title"
-                android:layout_margin="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/newyork"/>
+    <TextView android:id="@+id/culture"
+              android:layout_width="wrap_content"
+              android:layout_height="0dp"
+              android:layout_weight="1"
+              android:background="@drawable/back"
+              android:layout_gravity="center_vertical"
+              android:padding="10dp"
+              android:layout_margin="10dp"
+              android:gravity="left"
+              android:textSize="50sp"
+              android:text="@string/story"/>
 
+    <TextView android:id="@+id/history_text"
+              android:layout_width="wrap_content"
+              android:layout_height="0dp"
+              android:layout_weight="1"
+              android:layout_margin="10dp"
+              android:layout_gravity="center_vertical"
+              android:padding="10dp"
+              android:background="@drawable/back"
+              android:gravity="left"
+              android:textSize="50sp"
+              android:text="@string/story"/>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/people_and_area_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/story_layout"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:layout_above="@+id/twins_layout"
+            android:layout_toRightOf="@+id/links_layout">
+
+            <LinearLayout
+                    android:id="@+id/area_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_below="@id/story_layout">
+
+                <ImageView
+                        android:id="@+id/urban_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/areaicon1"
+                        android:layout_gravity="right"
+
+                        />
+                <ImageView
+                        android:id="@+id/area_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/area1"
+                        android:layout_gravity="right|center"
+
+                        />
+                <TextView
+                        android:id="@+id/area_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:textSize="30dp"
+                        android:gravity="center"
+                        android:text="@string/area"/>
+
+                <ImageView
+                        android:id="@+id/urban_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/area4"
+                        android:layout_gravity="left|center"
+
+                        />
+                <ImageView
+                        android:id="@+id/water_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/areaicon2"
+                        android:layout_gravity="left"
+
+                        />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/people_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_below="@+id/area_layout"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:id="@+id/pop_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/man2"/>
+            </LinearLayout>
+    </LinearLayout>
 
         <LinearLayout
-                android:id="@+id/story_layout"
-                android:layout_toRightOf="@id/mayor_image"
-                android:layout_below="@id/background_title"
-                android:layout_width="match_parent"
-                android:layout_margin="10dp"
+                android:id="@+id/twins_layout"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_above="@+id/line"
+                android:orientation="horizontal"
+                >
 
-            <TextView android:id="@+id/story_text"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:gravity="left"
-                      android:textSize="70sp"
-                      android:text="@string/story"/>
+        <ImageView
+                android:id="@+id/right_twin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/newyork"
+                android:layout_gravity="right"
+                android:src="@drawable/twin"/>
 
-            <TextView android:id="@+id/mayor_name"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_marginLeft="10dp"
-                      android:gravity="left"
-                      android:textSize="22sp"
-                      android:text="@string/story"/>
+        <ImageView
+                android:id="@+id/center_twin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:src="@drawable/twin"/>
 
-            <TextView android:id="@+id/mayor_lastname"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_marginLeft="10dp"
-                      android:gravity="left"
-                      android:textSize="20sp"
-                      android:text="@string/story"/>
+            <ImageView
+                android:id="@+id/left_twin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:layout_margin="10dp"
+                android:src="@drawable/twin"/>
+
         </LinearLayout>
 
-    <TextView
-            android:id="@+id/population_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/story_layout"
-            android:layout_marginRight="10dp"
-            android:textSize="40sp"
-            android:layout_alignParentRight="true"
-            android:text="@string/population"/>
+        <TextView
+                android:id="@+id/site_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_alignParentBottom="true"
+                android:textSize="30dp"
+                android:text="@string/site"
+                android:gravity="bottom|center_horizontal"/>
 
-    <ImageView
-            android:id="@+id/pop_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/population_title"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/pop"/>
-
-    <TextView
-            android:id="@+id/area_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toLeftOf="@id/population_title"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/story_layout"
-            android:textSize="90dp"
-            android:gravity="center"
-            android:text="@string/area"/>
-    <TextView
-            android:id="@+id/population_number"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/area_text"
-            android:textSize="30dp"
-            android:gravity="center"
-            android:text="@string/area"/>
-
-    <TextView
-            android:id="@+id/site_text"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_alignParentBottom="true"
-            android:text="@string/site"
-            android:gravity="bottom|left"/>
-
-    <View
+        <View
             android:id="@+id/line"
             android:layout_width="fill_parent"
-            android:background="@android:color/black"
+            android:background="@android:color/background_dark"
             android:layout_above="@id/site_text"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
             android:layout_height="2dp"/>
 
 </RelativeLayout>
