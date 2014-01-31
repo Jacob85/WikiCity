@@ -199,6 +199,13 @@ public class DataAccessObject implements IWikiQuery
 
     }
 
+    /**
+     * This method constract a query url for the images name it received as a parameter
+     * The response JSON is then being parsed by the {@link il.ac.bl.JsonParserUtil} to {@link il.ac.shenker.wiki.WikiImageInfo} objects
+     * Once done, the callback is being called that returns an list of {@link il.ac.shenker.wiki.WikiImageInfo} objects
+     * @param callback The callback is being called once the method is done, the calling object should implement {@link il.ac.services.QueryWikipediaCallback}
+     * @param imagesNames The names of the images to query from wikipedia
+     */
     @Override
     public void getImagesUrl(final QueryWikipediaCallback<List<WikiImageInfo>> callback, String... imagesNames)
     {
