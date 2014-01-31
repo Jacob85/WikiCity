@@ -24,7 +24,7 @@ public class Logger
     }
     public static void logException (Exception e)
     {
-        logError(e.getMessage());
+        logError("Error Message:" + e.getMessage());
         logError(e.getLocalizedMessage());
         logError(e.getStackTrace().toString());
     }

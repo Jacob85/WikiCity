@@ -72,6 +72,7 @@ public class JsonParserUtil
                 pageSection.setSectionName(currSection.getString("anchor"));
                 pageSection.setIndexforQuery(currSection.getInt("index"));
                 pageSection.setSectionNumber(currSection.getString("number"));
+                pageSection.setPageTitle(currSection.getString("fromtitle"));
                 addToSectionsList(pageSections, pageSection);
             }
         }catch (JSONException e)
@@ -79,6 +80,17 @@ public class JsonParserUtil
             Logger.logException(e);
         }
     return pageSections;
+    }
+    public static PageSection parseSectionContentIntoPageSection(JSONObject jsonObject, PageSection parseToHere)
+    {
+        try
+        {
+            parseToHere.setSecrionContentInHtml(getContentString(jsonObject));
+        } catch (JSONException e)
+        {
+            Logger.logException(e);
+        }
+        return parseToHere;
     }
     private static void addToSectionsList (List<PageSection> pageSections, PageSection pageSection)
     {
@@ -145,18 +157,22 @@ public class JsonParserUtil
 
     private static String getContentString(JSONObject json) throws JSONException
     {
-        JSONObject query = json.getJSONObject("query");
-        JSONObject pages = query.getJSONObject("pages");
-        Iterator<?> keys = pages.keys();
-        String key = (String) keys.next();
-        JSONObject pageId = pages.getJSONObject(key);
-        JSONArray rvisions = pageId.getJSONArray("revisions");
+        JSONArray rvisions = getJsonArrayFromWikiResponse(json);
 
         JSONObject rev0 = (JSONObject) rvisions.get(0);
         String value = rev0.getString("*");
         Log.i(JsonParserUtil.class.getSimpleName(),"Finished extracting the content from JSON, content is: " + value);
 
         return value;
+    }
+
+    private static JSONArray getJsonArrayFromWikiResponse(JSONObject json) throws JSONException {
+        JSONObject query = json.getJSONObject("query");
+        JSONObject pages = query.getJSONObject("pages");
+        Iterator<?> keys = pages.keys();
+        String key = (String) keys.next();
+        JSONObject pageId = pages.getJSONObject(key);
+        return pageId.getJSONArray("revisions");
     }
 
     private static HashMap<String, String> extractHashMapFromString(String input)
@@ -224,8 +240,8 @@ public class JsonParserUtil
             builder.numberofRainDaysAyear(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_NUMBER_OF_RAIN_DAYS_YEAR)));
             builder.yearMinTemp(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_YEAR_MIN_TEMP)));
             builder.yearMaxTemp(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_YEAR_MAX_TEMP)));
-            //special cases
-            builder.addPageSection(new WikiPageSection(getOnlyEnglishDataFromJsonArray(resourceJson, WikiConsts.CITY_GENERAL_INFO), "General Info"));
+            builder.cityGeneralInfo((getOnlyEnglishDataFromJsonArray(resourceJson, WikiConsts.CITY_GENERAL_INFO)));
+
             //external Links
             Collection<String> externalLinks = getAllValuesFromJsonArray(resourceJson, WikiConsts.CITY_WIKI_EXTERNAL_LINKS);
             for (String urlString : externalLinks)

@@ -23,5 +23,6 @@ public interface IWikiQuery
     public void getCityInfo(String cityName, QueryWikipediaCallback<CityInfo> callback);
     public void getImagesUrl(QueryWikipediaCallback<List <WikiImageInfo>> callback, String... imagesNames);
     public void getCityWikipediaSections(String cityName, QueryWikipediaCallback<List<PageSection>> callback);
+    public void getWikiSectionInfo(PageSection pageSection, QueryWikipediaCallback<PageSection> callback);
 
 }

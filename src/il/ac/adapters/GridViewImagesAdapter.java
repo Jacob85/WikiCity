@@ -1,19 +1,18 @@
 package il.ac.adapters;
 
 import android.content.Context;
-import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 import il.ac.bl.DataAccessObject;
-import il.ac.db.DataBaseHealper;
 import il.ac.services.QueryWikipediaCallback;
+import il.ac.shenkar.common.CityEnumType;
 import il.ac.shenkar.common.CityInfo;
+import il.ac.shenkar.common.GifWebView;
 import il.ac.shenkar.common.Logger;
-import il.ac.shenkar.common.cityEnumType;
 import il.ac.shenker.wiki.PageSection;
 
 import java.util.ArrayList;
@@ -25,9 +24,9 @@ import java.util.List;
 public class GridViewImagesAdapter extends BaseAdapter {
 
     private Context myContext;
-    private ArrayList<cityEnumType> enumTypeArrayList;
+    private ArrayList<CityEnumType> enumTypeArrayList;
 
-    public GridViewImagesAdapter(Context myContext, ArrayList<cityEnumType> types)
+    public GridViewImagesAdapter(Context myContext, ArrayList<CityEnumType> types)
     {
         this.myContext = myContext;
         enumTypeArrayList = types;
@@ -55,6 +54,31 @@ public class GridViewImagesAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent)
     {
+        GifWebView webView;
+        if (convertView  == null)
+        {
+            webView = new GifWebView(myContext, "file:///android_asset/aminated.gif");
+        }
+        else
+        {
+            webView = (GifWebView) convertView;
+        }
+        webView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                CityEnumType type = enumTypeArrayList.get(position);
+                Toast.makeText(myContext, type.getCityName() + " was pressed, from state " + type.getStateName(), 1500).show();
+                return false;
+            }
+        });
+
+           return webView;
+    }
+/*
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent)
+    {
         ImageView imageView;
         if (convertView == null)
         {
@@ -74,13 +98,23 @@ public class GridViewImagesAdapter extends BaseAdapter {
             @Override
             public void onClick(View v)
             {
-                cityEnumType type = enumTypeArrayList.get(position);
+                CityEnumType type = enumTypeArrayList.get(position);
                 Toast.makeText(myContext, type.getCityName() + " was pressed, from state " + type.getStateName(), 1500).show();
-                DataAccessObject.getInstance().getCityWikipediaSections(type.getCityName(), new QueryWikipediaCallback<List<PageSection>>() {
+                DataAccessObject.getInstance().getCityInfo(type.getCityName(), new QueryWikipediaCallback<CityInfo>() {
                     @Override
-                    public void done(List<PageSection> returnedObject, Exception e)
+                    public void done(CityInfo returnedObject, Exception e)
                     {
-                        Logger.logInfo("wfdweujfbvqwaFVBWQW");
+                        if (returnedObject != null)
+                        {
+                            DataAccessObject.getInstance().getWikiSectionInfo(returnedObject.getPageSections().get(0), new QueryWikipediaCallback<PageSection>() {
+                                @Override
+                                public void done(PageSection returnedObject, Exception e)
+                                {
+
+                                    Logger.logInfo(returnedObject.getSecrionContentInHtml());
+                                }
+                            });
+                        }
 
                     }
                 });
@@ -89,5 +123,5 @@ public class GridViewImagesAdapter extends BaseAdapter {
 
         imageView.setImageResource(enumTypeArrayList.get(position).getImageId());
         return imageView;
-    }
+    }*/
 }

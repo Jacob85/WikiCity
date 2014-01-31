@@ -1,6 +1,7 @@
 package il.ac.bl;
 
 import il.ac.shenkar.common.Logger;
+import il.ac.shenker.wiki.PageSection;
 import il.ac.shenker.wiki.WikiConsts;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,6 +37,21 @@ public class QueryUrlGenerator
         try
         {
             url = new URL(builder.toString());
+        } catch (MalformedURLException e)
+        {
+            Logger.logException(e);
+        }
+        return url;
+    }
+    public static URL generatePageSectionContent(PageSection pageSection)
+    {
+        String cityName = pageSection.getPageTitle().replaceAll(" ", WikiConsts.SPACE);
+        int section = pageSection.getIndexforQuery();
+        URL url = null;
+
+        try
+        {
+            url = new URL("http://en.wikipedia.org/w/api.php?action=query&prop=revisions&format=json&rvprop=content&rvparse=&rvlimit=1&titles=" + cityName + "&rvsection=" + section);
         } catch (MalformedURLException e)
         {
             Logger.logException(e);

@@ -1,6 +1,7 @@
 package il.ac.shenkar.common;
 
 import com.google.android.gms.maps.model.LatLng;
+import il.ac.shenker.wiki.PageSection;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,6 +22,7 @@ public class CityInfo
     private String imageSealWikiName;
     private String imageFlagWikiName;
     private String imageMapWikiName;
+    private String cityGeneralInfo;
     private Date establishedDate;
     private URL countryNameUrl;
     private String imageSkyLine;
@@ -33,7 +35,7 @@ public class CityInfo
     private long totalPopulation;
     private int postalCode;
     private double numberOfRainDaysAyear;
-    private List<WikiPageSection> pageSections;
+    private List<PageSection> pageSections;
     private List<URL> wikiExternalLinksList;
     private LatLng geoLocation;
 
@@ -62,9 +64,30 @@ public class CityInfo
         this.pageSections = builder.pageSections;
         this.wikiExternalLinksList = builder.wikiExternalLinksList;
         this.geoLocation = builder.geoLocation;
+        this.cityGeneralInfo = builder.cityGeneralInfo;
 
     }
 
+
+    public void setYearMinTemp(double yearMinTemp) {
+        this.yearMinTemp = yearMinTemp;
+    }
+
+    public void setYearMaxTemp(double yearMaxTemp) {
+        this.yearMaxTemp = yearMaxTemp;
+    }
+
+    public String getCityGeneralInfo() {
+        return cityGeneralInfo;
+    }
+
+    public void setCityGeneralInfo(String cityGeneralInfo) {
+        this.cityGeneralInfo = cityGeneralInfo;
+    }
+
+    public void setNumberOfRainDaysAyear(double numberOfRainDaysAyear) {
+        this.numberOfRainDaysAyear = numberOfRainDaysAyear;
+    }
 
     public double getYearMaxTemp() {
         return yearMaxTemp;
@@ -226,11 +249,11 @@ public class CityInfo
         this.numberOfRainDaysAyear = numberOfRainDaysAyear;
     }
 
-    public List<WikiPageSection> getPageSections() {
+    public List<PageSection> getPageSections() {
         return pageSections;
     }
 
-    public void setPageSections(List<WikiPageSection> pageSections) {
+    public void setPageSections(List<PageSection> pageSections) {
         this.pageSections = pageSections;
     }
 
@@ -260,6 +283,7 @@ public class CityInfo
         private String imageSealWikiName;
         private String imageFlagWikiName;
         private String imageMapWikiName;
+        private String cityGeneralInfo;
         private Date establishedDate;
         private URL countryNameUrl;
         private String imageSkyLine;
@@ -272,7 +296,7 @@ public class CityInfo
         private long totalPopulation;
         private int postalCode;
         private double numberOfRainDaysAyear;
-        private List<WikiPageSection> pageSections;
+        private List<PageSection> pageSections;
         private List<URL> wikiExternalLinksList;
         private LatLng geoLocation;
 
@@ -291,6 +315,11 @@ public class CityInfo
         public CityInfoBuilder region (String region)
         {
             this.region = region;
+            return this;
+        }
+        public CityInfoBuilder cityGeneralInfo(String cityGeneralInfo)
+        {
+            this.cityGeneralInfo = cityGeneralInfo;
             return this;
         }
         public CityInfoBuilder yearMinTemp (double yearMinTemp)
@@ -321,6 +350,11 @@ public class CityInfo
         public CityInfoBuilder establishedDate(String dateString)
         {
 
+            if (dateString == null || dateString.isEmpty() )
+            {
+                this.establishedDate = null;
+                return this;
+            }
             try
             {
                 this.establishedDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
@@ -333,6 +367,11 @@ public class CityInfo
         }
         public CityInfoBuilder countryName(String countryName)
         {
+            if (countryName == null)
+            {
+                this.countryNameUrl = null;
+                return this;
+            }
             try
             {
                 this.countryNameUrl = new URL(countryName);
@@ -350,6 +389,11 @@ public class CityInfo
         }
         public CityInfoBuilder cityWebSite (String url)
         {
+            if (url == null)
+            {
+                this.cityWebSite = null;
+                return this;
+            }
             try
             {
                 this.cityWebSite = new URL(url);
@@ -407,11 +451,16 @@ public class CityInfo
             this.numberOfRainDaysAyear = numberOfRainDaysAyear;
             return this;
         }
-        public CityInfoBuilder addPageSection (WikiPageSection section)
+        public CityInfoBuilder addPageSection (PageSection section)
         {
             if (this.pageSections == null)
-                this.pageSections = new ArrayList<WikiPageSection>();
+                this.pageSections = new ArrayList<PageSection>();
             this.pageSections.add(section);
+            return this;
+        }
+        public CityInfoBuilder PageSections (List<PageSection> pageSections)
+        {
+            this.pageSections = pageSections;
             return this;
         }
         public CityInfoBuilder addExternalLink (URL externalLink)
