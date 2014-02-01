@@ -72,42 +72,76 @@
                   android:textSize="16sp"
                   android:text="@string/story"/>
     </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/info_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:layout_above="@+id/line"
+            android:layout_below="@+id/story_layout">
+
     <LinearLayout
             android:id="@+id/links_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="fill_parent"
-            android:layout_below="@+id/story_layout"
             android:layout_alignParentLeft="true"
             android:orientation="vertical"
             android:layout_above="@+id/line">
 
-    <TextView android:id="@+id/culture"
+    <ImageView android:id="@+id/map_info"
               android:layout_width="wrap_content"
               android:layout_height="0dp"
-              android:layout_weight="1"
-              android:background="@drawable/back"
-              android:layout_gravity="center_vertical"
-              android:padding="10dp"
+              android:layout_weight="3"
               android:layout_margin="10dp"
               android:gravity="left"
-              android:textSize="40sp"
-              android:text="@string/culture"/>
+              android:src="@drawable/info_map"/>
 
-    <TextView android:id="@+id/history_text"
-              android:layout_width="wrap_content"
-              android:layout_height="0dp"
-              android:layout_weight="1"
-              android:layout_margin="10dp"
-              android:layout_gravity="center_vertical"
-              android:padding="10dp"
-              android:background="@drawable/back"
-              android:gravity="left"
-              android:textSize="40sp"
-              android:text="@string/history"/>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            <LinearLayout
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:id="@+id/min_tmp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textSize="22dp"
+                        android:text=" "/>
+
+                <TextView
+                        android:id="@+id/max_tmp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textSize="22dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text=" "/>
+
+            </LinearLayout>
+
+            <ImageView android:id="@+id/tmp_info"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/temperature"
+                       android:layout_gravity="center_vertical"
+                    />
+        </LinearLayout>
+
     </LinearLayout>
+
     <LinearLayout
             android:id="@+id/people_and_area_layout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="match_parent"
             android:layout_below="@+id/story_layout"
             android:orientation="vertical"
@@ -116,30 +150,54 @@
             android:gravity="right"
             android:layout_toRightOf="@+id/links_layout" android:layout_above="@+id/line">
 
-            <LinearLayout
-                    android:id="@+id/area_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:layout_below="@id/story_layout">
+            <GridLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:rowCount="5"
+                    android:columnCount="5">
 
                 <ImageView
                         android:id="@+id/urban_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/areaicon1"
-                        android:layout_gravity="right"
-
                         />
+                <TextView
+                        android:id="@+id/water_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" "
+                        />
+                <Space/>
+                <TextView
+                        android:id="@+id/urban_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" "
+                        />
+                <ImageView
+                        android:id="@+id/urban_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/areaicon1"
+                        />
+                <Space/>
                 <ImageView
                         android:id="@+id/area_left"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/area2"
-                        android:layout_gravity="right|center"
-
-                        />
+                        android:layout_gravity="center_vertical"/>
+                <Space/>
+                <ImageView
+                        android:id="@+id/area_left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/area3"
+                        android:layout_gravity="center_vertical"/>
+                <Space/>
+                <Space/>
+                <Space/>
                 <TextView
                         android:id="@+id/area_text"
                         android:layout_width="wrap_content"
@@ -149,85 +207,68 @@
                         android:textSize="30dp"
                         android:gravity="center"
                         android:text="@string/area"/>
-
+                <Space/>
+                <Space/>
+                <Space/>
                 <ImageView
-                        android:id="@+id/urban_right"
+                        android:id="@+id/area_left"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/area3"
-                        android:layout_gravity="left|center"
-
-                        />
+                        android:src="@drawable/area4"
+                        android:layout_gravity="center_vertical"/>
+                <Space/>
                 <ImageView
-                        android:id="@+id/water_img"
+                        android:id="@+id/area_left"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/areaicon2"
-                        android:layout_gravity="left"
-
+                        android:src="@drawable/area1"
+                        android:layout_gravity="center_vertical"/>
+                <Space/>
+                <ImageView
+                        android:id="@+id/urban_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/areaicon1"
                         />
+                <Space/>
+                <Space/>
+                <Space/>
+                <ImageView
+                        android:id="@+id/urban_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/areaicon1"
+                        />
+            </GridLayout>
 
-            </LinearLayout>
 
             <LinearLayout
                     android:id="@+id/people_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:layout_below="@+id/area_layout"
+                    android:layout_weight="2"
+                    android:layout_gravity="bottom|right"
                     android:orientation="horizontal">
 
                 <LinearLayout
                         android:id="@+id/littles"
+                        android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="horizontal">
                 </LinearLayout>
+
                 <ImageView
                         android:id="@+id/pop_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
+                        android:layout_margin="10dp"
                         android:src="@drawable/man2"/>
 
             </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
-        <!--<LinearLayout-->
-                <!--android:id="@+id/twins_layout"-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_above="@+id/line"-->
-                <!--android:orientation="horizontal"-->
-                <!-->-->
-
-        <!--<ImageView-->
-                <!--android:id="@+id/right_twin"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_gravity="right"-->
-                <!--android:src="@drawable/twin"/>-->
-
-        <!--<ImageView-->
-                <!--android:id="@+id/center_twin"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_gravity="center_horizontal"-->
-                <!--android:layout_margin="10dp"-->
-                <!--android:src="@drawable/twin"/>-->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/left_twin"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_gravity="left"-->
-                <!--android:layout_margin="10dp"-->
-                <!--android:src="@drawable/twin"/>-->
-
-        <!--</LinearLayout>-->
 
         <TextView
                 android:id="@+id/site_text"

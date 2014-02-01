@@ -10,7 +10,7 @@ import java.io.Serializable;
 public enum cityEnumType  implements Serializable
 {
     LOS_ANGELES("Los Angeles", R.drawable.losangeles,"California"),
-  //  LAS_VEGAS("Las Vegas", R.drawable.las_vegas,"Nevada"),
+  //  LAS_VEGAS("Las Vegas", R.drawable.losangeles,"Nevada"),
     MIAMI("Miami", R.drawable.miami, "Florida"),
     NEY_YORK("New York City", R.drawable.newyork3, "New York" ),
     CHICAGO ("Chicago", R.drawable.chcago, "Illinois"),
