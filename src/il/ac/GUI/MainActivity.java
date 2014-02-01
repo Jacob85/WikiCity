@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.example.WikiCity.R;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -27,6 +29,7 @@ import il.ac.shenkar.common.CityInfo;
 import il.ac.shenkar.common.Logger;
 import il.ac.shenkar.common.StateInfo;
 import il.ac.shenkar.common.cityEnumType;
+import il.ac.shenker.wiki.PageSection;
 import il.ac.shenker.wiki.WikiConsts;
 import il.ac.shenker.wiki.WikiImageInfo;
 
@@ -43,6 +46,7 @@ public class MainActivity extends Activity {
     private ListView mDrawerList;
     private Movie movie;
     private String[] mPlanetTitles;
+    private ArrayList<PageSection> allPageSections;
     View rootView;
     Typeface font;
 
@@ -59,6 +63,7 @@ public class MainActivity extends Activity {
         mDrawerList.addHeaderView(header);
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,R.layout.drawer_list_item));
+
 
         mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
                 mDrawerLayout, /* DrawerLayout object */
@@ -96,6 +101,7 @@ public class MainActivity extends Activity {
             public void done(CityInfo returnedObject, Exception e) {
                 if(e == null) {
                     cityInfo = returnedObject;
+                    populateViews();
                     Fragment fragment = new CityFragment(cityInfo);
                     FragmentManager fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
@@ -131,10 +137,11 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-    private void populateViews () {
+    private void populateViews ()
+    {
 
-
-        DataAccessObject.getInstance().getImagesUrl(new QueryWikipediaCallback<List<WikiImageInfo>>() {
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,R.layout.drawer_list_item, createPageSectionsArray()));
+        /*DataAccessObject.getInstance().getImagesUrl(new QueryWikipediaCallback<List<WikiImageInfo>>() {
             @Override
             public void done(List<WikiImageInfo> returnedObject, Exception e)
             {
@@ -151,9 +158,65 @@ public class MainActivity extends Activity {
                 }
             }
         }, cityInfo.getImageSkyLine());
+*/
+    }
+
+    private String[] createPageSectionsArray()
+    {
+        ArrayList<String> pageSectionsToReturn = new ArrayList<String>();
+        allPageSections = new ArrayList<PageSection>();
+        ArrayList<PageSection> inputList = (ArrayList<PageSection>) cityInfo.getPageSections();
+
+        for(PageSection currInpPageSection: inputList)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            buildPAgeSectionLine(currInpPageSection, stringBuilder);
+            pageSectionsToReturn.add(stringBuilder.toString());
+            allPageSections.add(currInpPageSection);
+            if (currInpPageSection.getSubSections() == null)
+            {
+               continue;
+            }
+            else
+            {
+                ArrayList<PageSection> subList = currInpPageSection.getSubSections();
+                for (PageSection currSub : subList)
+                {
+                    StringBuilder subBuilder = new StringBuilder();
+                    buildPAgeSectionLine(currSub, subBuilder);
+                    stringBuilder.append(" ");
+                    pageSectionsToReturn.add(subBuilder.toString());
+                    allPageSections.add(currSub);
+                    if (currSub.getSubSections() == null)
+                    {
+                       continue;
+                    }
+                    else
+                    {
+                        ArrayList<PageSection> subSubList = currSub.getSubSections();
+                        for (PageSection currSubSub : subSubList)
+                        {
+                            StringBuilder subSubBuilder = new StringBuilder();
+                            subSubBuilder.append(" ");
+                            buildPAgeSectionLine(currSubSub, subSubBuilder);
+                            pageSectionsToReturn.add(subSubBuilder.toString());
+                            allPageSections.add(currSubSub);
+                        }
+                    }
+                }
+            }
 
 
+        }
+        mPlanetTitles = new String[pageSectionsToReturn.size()];
+        return pageSectionsToReturn.toArray(mPlanetTitles);
+    }
 
+    private void buildPAgeSectionLine(PageSection currInpPageSection, StringBuilder stringBuilder) {
+        stringBuilder.append(currInpPageSection.getSectionNumber());
+        stringBuilder.append(" ");
+        stringBuilder.append(currInpPageSection.getSectionName());
     }
 
     /**
@@ -223,6 +286,8 @@ public class MainActivity extends Activity {
         }
 
         private void populateViews () {
+
+
 
             if(city.getCityName() != null)
                 cityName.setText(city.getCityName().toUpperCase());
