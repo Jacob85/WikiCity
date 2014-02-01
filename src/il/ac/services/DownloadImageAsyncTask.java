@@ -2,15 +2,17 @@ package il.ac.services;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ImageView;
+import com.larvalabs.svgandroid.SVG;
+import com.larvalabs.svgandroid.SVGParser;
 import il.ac.shenkar.common.Logger;
+import org.apache.http.HttpConnection;
 
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
@@ -18,6 +20,8 @@ import java.net.URL;
  */
 public class DownloadImageAsyncTask extends AsyncTask<URL, Void, Bitmap> {
     ImageView bmImage;
+    boolean isSVG;
+    SVG svgToReturn;
 
     /**
      * create Object from this class, send it an object to populate and a URL to Query the image from and the Task wil load the image to the Image View once it done;
@@ -35,12 +39,29 @@ public class DownloadImageAsyncTask extends AsyncTask<URL, Void, Bitmap> {
             Logger.logError("Error, Image URL = NULL! from: " + this.getClass().getSimpleName());
             return null;
         }
+        if (urls[0].toString().endsWith(".svg"))
+            isSVG = true;
+
         Bitmap mIcon11 = null;
         try
         {
-            InputStream in = urls[0].openStream();
-            mIcon11 = BitmapFactory.decodeStream(in);
-            return mIcon11;
+            Logger.logInfo("Image URL = " + urls[0]);
+            HttpURLConnection httpConnection  = (HttpURLConnection) urls[0].openConnection();
+            InputStream in = httpConnection.getInputStream();
+            Logger.logInfo(String.valueOf(httpConnection.getResponseCode()));
+            if (isSVG)
+            {
+                //SVG svg = SVGParser.getSVGFromInputStream(in);
+                //svgToReturn = svg;
+                //return null;
+                mIcon11 = BitmapFactory.decodeStream(in);
+                return mIcon11;
+            }
+            else
+            {
+                mIcon11 = BitmapFactory.decodeStream(in);
+                return mIcon11;
+            }
         } catch (Exception e)
         {
             Logger.logException(e);
@@ -51,9 +72,18 @@ public class DownloadImageAsyncTask extends AsyncTask<URL, Void, Bitmap> {
 
     protected void onPostExecute(Bitmap result)
     {
-        if (result != null)
-            bmImage.setImageBitmap(result);
-
+       if (isSVG)
+       {
+           bmImage.setBackground(svgToReturn.createPictureDrawable());
+           return;
+       }
+       else if (result != null)
+       {
+           bmImage.setImageBitmap(result);
+           //bmImage.setBackground(new BitmapDrawable(result));
+       }
+        else
+           Logger.logError("image is null");
     }
 }
 
