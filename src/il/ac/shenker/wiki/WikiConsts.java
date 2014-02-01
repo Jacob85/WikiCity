@@ -16,6 +16,7 @@ public class WikiConsts
     public static String CITY_TYPE_BUNDLE="CityTypeBundle";
 
 
+
     //City keys
     public static String CITY_POPULATION ="population_total";
     public static String TIME_ZONE_OFFSET = "utc_offset";

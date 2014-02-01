@@ -110,6 +110,8 @@ public class MainActivity extends Activity {
                 yearEstablish, culture,history, storyTitle, areaTitle;
         private Typeface tfReg,tfLight;
         private CityInfo city;
+        private
+
         public CityFragment() {
             // Empty constructor required for fragment subclasses
         }
@@ -122,6 +124,7 @@ public class MainActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.main, container, false);
+
 
             tfReg = Typeface.createFromAsset(getActivity().getAssets(), "fonts/futura_lt_condensed_reg.ttf");
             tfLight = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Futura LT condensd light.ttf");
@@ -161,23 +164,15 @@ public class MainActivity extends Activity {
 
             if(city.getCityName() != null)
                 cityName.setText(city.getCityName().toUpperCase());
-            //        if(cityInfo.getCityName() != null)
-//            cityName.setText(cityInfo.getCityName());
-//
-//        if(cityInfo.getTotalPopulation() != 0)
-//            populationNumber.setText(String.valueOf(cityInfo.getTotalPopulation()));
-//
-//        if(cityInfo.getCityWebSite() != null)
-//            citySite.setText(cityInfo.getCityWebSite().toString());
-//
-//        if(cityInfo.getEstablishedDate() != null) {
-//            calendar.setTime(cityInfo.getEstablishedDate());
-//            yearEstablish.setText((String.valueOf(calendar.get(Calendar.YEAR))));
-//        }
-//
-//        if(cityInfo.getUtcOffset() != 0) {
-//            timeZone.setText("GMT " + String.valueOf(cityInfo.getUtcOffset()));
-//        }
+
+            if(city.getCityWebSite() != null)
+                citySite.setText(city.getCityWebSite().toString().toUpperCase());
+
+            if(city.getEstablishedDate() != null) {
+                calendar.setTime(city.getEstablishedDate());
+                yearEstablish.setText((String.valueOf(calendar.get(Calendar.YEAR))));
+            }
+
         }
 
         public void calculateLittleMen() {
