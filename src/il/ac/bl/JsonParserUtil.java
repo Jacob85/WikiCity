@@ -48,14 +48,14 @@ public class JsonParserUtil
 
             JSONArray imageInfo = pageId.getJSONArray("imageinfo");
             JSONObject rev0 = (JSONObject)imageInfo.get(0);
-            String url = rev0.getString("url");
-            url = url.replace("https","http");
-            builder.Url(url);
-            collectionToReturn.add(builder.build());
-        }
+    String url = rev0.getString("url");
+    url = url.replace("https","http");
+    builder.Url(url);
+    collectionToReturn.add(builder.build());
+}
 
-        return collectionToReturn;
-    }
+return collectionToReturn;
+        }
 
     public static List<PageSection> parseWikiPageSections(JSONObject json)
     {

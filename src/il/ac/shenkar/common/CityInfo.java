@@ -378,8 +378,19 @@ public class CityInfo
                 this.establishedDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
             } catch (ParseException e)
             {
+                // try to parse int
                 Logger.logException(e);
                 this.establishedDate = new Date();
+                Calendar calendar = new GregorianCalendar();
+                  try
+                  {
+                      calendar.set(GregorianCalendar.YEAR, Integer.parseInt(dateString));
+                      this.establishedDate = calendar.getTime();
+                  }
+                  catch (Exception e1)
+                  {
+                      Logger.logException(e1);
+                  }
             }
             return this;
         }

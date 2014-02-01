@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 import il.ac.GUI.MainActivity;
@@ -15,7 +16,7 @@ import il.ac.services.QueryWikipediaCallback;
 import il.ac.shenkar.common.CityInfo;
 import il.ac.shenkar.common.GifWebView;
 import il.ac.shenkar.common.Logger;
-import il.ac.shenkar.common.cityEnumType;
+import il.ac.shenkar.common.cityEnumType ;
 import il.ac.shenker.wiki.PageSection;
 import il.ac.shenker.wiki.WikiConsts;
 
@@ -27,9 +28,9 @@ import java.util.ArrayList;
 public class GridViewImagesAdapter extends BaseAdapter {
 
     private Context myContext;
-    private ArrayList<cityEnumType> enumTypeArrayList;
+    private ArrayList<cityEnumType > enumTypeArrayList;
 
-    public GridViewImagesAdapter(Context myContext, ArrayList<cityEnumType> types)
+    public GridViewImagesAdapter(Context myContext, ArrayList<cityEnumType > types)
     {
         this.myContext = myContext;
         enumTypeArrayList = types;
@@ -70,7 +71,7 @@ public class GridViewImagesAdapter extends BaseAdapter {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event)
 //            {
-//                cityEnumType type = enumTypeArrayList.get(position);
+//                cityEnumType  type = enumTypeArrayList.get(position);
 //                Toast.makeText(myContext, type.getCityName() + " was pressed, from state " + type.getStateName(), 1500).show();
 //                return false;
 //            }
@@ -87,8 +88,8 @@ public class GridViewImagesAdapter extends BaseAdapter {
         {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(myContext);
-            //imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            //imageView.setLayoutParams(new GridView.LayoutParams(200, 400));
+            //imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(4, 4, 4, 4);
         }
         else
@@ -101,7 +102,7 @@ public class GridViewImagesAdapter extends BaseAdapter {
             @Override
             public void onClick(View v)
             {
-                cityEnumType type = enumTypeArrayList.get(position);
+                cityEnumType  type = enumTypeArrayList.get(position);
                 Toast.makeText(myContext, type.getCityName() + " was pressed, from state " + type.getStateName(), 1500).show();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(WikiConsts.CITY_TYPE,type);
