@@ -35,7 +35,7 @@ public class WebViewFragment extends DialogFragment
 
         webView = new WebView(context);
         //webView.loadData(pageSection.getSecrionContentInHtml(), "text/html", "UTF-8");
-        webView.loadDataWithBaseURL("http://en.wikipedia.org/",pageSection.getSecrionContentInHtml(), "text/html", "UTF-8", null);
+        webView.loadDataWithBaseURL("http://en.wikipedia.org/", pageSection.getSecrionContentInHtml(), "text/html", "UTF-8", null);
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {

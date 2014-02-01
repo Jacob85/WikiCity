@@ -2,6 +2,8 @@ package il.ac.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,13 +12,11 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
+import il.ac.GUI.GridViewActivity;
 import il.ac.GUI.MainActivity;
 import il.ac.bl.DataAccessObject;
 import il.ac.services.QueryWikipediaCallback;
-import il.ac.shenkar.common.CityInfo;
-import il.ac.shenkar.common.GifWebView;
-import il.ac.shenkar.common.Logger;
-import il.ac.shenkar.common.cityEnumType ;
+import il.ac.shenkar.common.*;
 import il.ac.shenker.wiki.PageSection;
 import il.ac.shenker.wiki.WikiConsts;
 
@@ -54,31 +54,6 @@ public class GridViewImagesAdapter extends BaseAdapter {
     {
         return position;
     }
-//
-//    @Override
-//    public View getView(final int position, View convertView, ViewGroup parent)
-//    {
-//        GifWebView webView;
-//        if (convertView  == null)
-//        {
-//            webView = new GifWebView(myContext, "file:///android_asset/aminated.gif");
-//        }
-//        else
-//        {
-//            webView = (GifWebView) convertView;
-//        }
-//        webView.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event)
-//            {
-//                cityEnumType  type = enumTypeArrayList.get(position);
-//                Toast.makeText(myContext, type.getCityName() + " was pressed, from state " + type.getStateName(), 1500).show();
-//                return false;
-//            }
-//        });
-//
-//           return webView;
-//    }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent)
@@ -102,36 +77,35 @@ public class GridViewImagesAdapter extends BaseAdapter {
             @Override
             public void onClick(View v)
             {
-                cityEnumType  type = enumTypeArrayList.get(position);
-                Toast.makeText(myContext, type.getCityName() + " was pressed, from state " + type.getStateName(), 1500).show();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(WikiConsts.CITY_TYPE,type);
+                if (isInternetAvailable())
+                {
+                    cityEnumType  type = enumTypeArrayList.get(position);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(WikiConsts.CITY_TYPE,type);
 
-                Intent intent = new Intent(myContext, MainActivity.class);
-                intent.putExtra(WikiConsts.CITY_TYPE_BUNDLE, bundle);
-                myContext.startActivity(intent);
-//                DataAccessObject.getInstance().getCityInfo(type.getCityName(), new QueryWikipediaCallback<CityInfo>() {
-//                    @Override
-//                    public void done(CityInfo returnedObject, Exception e)
-//                    {
-//                        if (returnedObject != null)
-//                        {
-//                            DataAccessObject.getInstance().getWikiSectionInfo(returnedObject.getPageSections().get(0), new QueryWikipediaCallback<PageSection>() {
-//                                @Override
-//                                public void done(PageSection returnedObject, Exception e)
-//                                {
-//
-//                                    Logger.logInfo(returnedObject.getSecrionContentInHtml());
-//                                }
-//                            });
-//                        }
-//
-//                    }
-//                });
+                    Intent intent = new Intent(myContext, MainActivity.class);
+                    intent.putExtra(WikiConsts.CITY_TYPE_BUNDLE, bundle);
+                    myContext.startActivity(intent);
+                }
+                else
+                {
+                    DialogHelper.showAlertDialog("No Connectivity", "Internet connection is required", myContext);
+                    return;
+                }
             }
         });
 
         imageView.setImageResource(enumTypeArrayList.get(position).getImageId());
         return imageView;
+    }
+
+    public boolean isInternetAvailable()
+    {
+        ConnectivityManager cm = (ConnectivityManager) myContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork == null)
+            return false;
+        return true;
+
     }
 }

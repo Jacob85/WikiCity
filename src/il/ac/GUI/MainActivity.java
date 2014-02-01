@@ -52,6 +52,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DialogHelper.showProgressDialog("Fetching Data From Web ...", this);
         mDrawerLayout =(DrawerLayout)findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mPlanetTitles = getResources().getStringArray(R.array.items);
@@ -71,7 +72,7 @@ public class MainActivity extends Activity {
                     // do nothing - the header is pressed
                     return;
                 }
-                DialogHelper.showProgressDialog("Loading...", getApplicationContext());
+                DialogHelper.showProgressDialog("Loading...", MainActivity.this);
                 DataAccessObject.getInstance().getWikiSectionInfo(allPageSections.get(position - 1), new QueryWikipediaCallback<PageSection>() {
                     @Override
                     public void done(PageSection returnedObject, Exception e)
@@ -128,6 +129,7 @@ public class MainActivity extends Activity {
                 if(e == null) {
                     cityInfo = returnedObject;
                     populateViews();
+                    DialogHelper.closeProggresDialog();
                     Fragment fragment = new CityFragment(cityInfo);
                     FragmentManager fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
