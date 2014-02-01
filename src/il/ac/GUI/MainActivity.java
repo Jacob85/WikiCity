@@ -3,6 +3,7 @@ package il.ac.GUI;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.graphics.Movie;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -24,6 +25,8 @@ import il.ac.services.DownloadImageAsyncTask;
 import il.ac.services.QueryWikipediaCallback;
 import il.ac.shenkar.common.CityInfo;
 import il.ac.shenkar.common.Logger;
+import il.ac.shenkar.common.cityEnumType;
+import il.ac.shenker.wiki.WikiConsts;
 import il.ac.shenker.wiki.WikiImageInfo;
 
 /**
@@ -55,13 +58,16 @@ public class MainActivity extends Activity {
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,R.layout.drawer_list_item));
 
-        DataAccessObject.getInstance().getCityInfo("Los Angeles",new QueryWikipediaCallback<CityInfo>() {
+        Bundle bundle = getIntent().getExtras().getBundle(WikiConsts.CITY_TYPE_BUNDLE);
+        cityEnumType type = (cityEnumType) bundle.getSerializable(WikiConsts.CITY_TYPE);
+        DataAccessObject.getInstance().getCityInfo(type.getCityName(),new QueryWikipediaCallback<CityInfo>() {
             @Override
             public void done(CityInfo returnedObject, Exception e) {
                 if(e == null) {
-                    calendar = Calendar.getInstance();
                     cityInfo = returnedObject;
-                    populateViews();
+                    Fragment fragment = new CityFragment(cityInfo);
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
                 } else {
                     Logger.logException(e);
                 }
@@ -71,23 +77,7 @@ public class MainActivity extends Activity {
     }
 
     private void populateViews () {
-//        if(cityInfo.getCityName() != null)
-//            cityName.setText(cityInfo.getCityName());
-//
-//        if(cityInfo.getTotalPopulation() != 0)
-//            populationNumber.setText(String.valueOf(cityInfo.getTotalPopulation()));
-//
-//        if(cityInfo.getCityWebSite() != null)
-//            citySite.setText(cityInfo.getCityWebSite().toString());
-//
-//        if(cityInfo.getEstablishedDate() != null) {
-//            calendar.setTime(cityInfo.getEstablishedDate());
-//            yearEstablish.setText((String.valueOf(calendar.get(Calendar.YEAR))));
-//        }
-//
-//        if(cityInfo.getUtcOffset() != 0) {
-//            timeZone.setText("GMT " + String.valueOf(cityInfo.getUtcOffset()));
-//        }
+
 
         DataAccessObject.getInstance().getImagesUrl(new QueryWikipediaCallback<List<WikiImageInfo>>() {
             @Override
@@ -107,9 +97,7 @@ public class MainActivity extends Activity {
             }
         }, cityInfo.getImageSkyLine());
 
-        Fragment fragment = new CityFragment(cityInfo);
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
 
     }
 
@@ -121,11 +109,13 @@ public class MainActivity extends Activity {
         private TextView cityName, populationNumber, citySite,story_long,state_title,
                 yearEstablish, culture,history, storyTitle, areaTitle;
         private Typeface tfReg,tfLight;
+        private CityInfo city;
         public CityFragment() {
             // Empty constructor required for fragment subclasses
         }
-        public CityFragment(CityInfo cityInfo) {
-
+        public CityFragment(CityInfo currCityInfo) {
+            if(currCityInfo != null)
+                city = currCityInfo;
         }
 
         @Override
@@ -147,6 +137,7 @@ public class MainActivity extends Activity {
             state_title = (TextView)rootView.findViewById(R.id.state_title);
 
             setFonts();
+            populateViews();
             calculateLittleMen();
 
 
@@ -164,6 +155,29 @@ public class MainActivity extends Activity {
             areaTitle.setTypeface(tfReg);
             story_long.setTypeface(tfLight);
             state_title.setTypeface(tfReg);
+        }
+
+        private void populateViews () {
+
+            if(city.getCityName() != null)
+                cityName.setText(city.getCityName().toUpperCase());
+            //        if(cityInfo.getCityName() != null)
+//            cityName.setText(cityInfo.getCityName());
+//
+//        if(cityInfo.getTotalPopulation() != 0)
+//            populationNumber.setText(String.valueOf(cityInfo.getTotalPopulation()));
+//
+//        if(cityInfo.getCityWebSite() != null)
+//            citySite.setText(cityInfo.getCityWebSite().toString());
+//
+//        if(cityInfo.getEstablishedDate() != null) {
+//            calendar.setTime(cityInfo.getEstablishedDate());
+//            yearEstablish.setText((String.valueOf(calendar.get(Calendar.YEAR))));
+//        }
+//
+//        if(cityInfo.getUtcOffset() != 0) {
+//            timeZone.setText("GMT " + String.valueOf(cityInfo.getUtcOffset()));
+//        }
         }
 
         public void calculateLittleMen() {
