@@ -17,7 +17,7 @@ public enum cityEnumType  implements Serializable
     BALTIMORE("Baltimore", R.drawable.baltimore, "Maryland"),
     BOSTON("Boston", R.drawable.boston, "Massachusetts"),
     DALLAS("Dallas ", R.drawable.dallas, "Texas" ),
-    DENVER("Denver", R.drawable.denver, "Colorado"),
+    DENVER("Denver_City,_Texas", R.drawable.denver, "Texas"),
     HONOLULU("Honolulu", R.drawable.honololo, "Hawaii"),
     HOUSTON("Houston", R.drawable.houston, "Texas"),
     ORLANDO("Orlando", R.drawable.orlando, "Florida"),

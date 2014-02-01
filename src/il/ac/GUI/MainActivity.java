@@ -1,8 +1,7 @@
 package il.ac.GUI;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.app.*;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Movie;
@@ -15,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.*;
 import com.example.WikiCity.R;
 
@@ -25,10 +26,7 @@ import java.util.List;
 import il.ac.bl.DataAccessObject;
 import il.ac.services.DownloadImageAsyncTask;
 import il.ac.services.QueryWikipediaCallback;
-import il.ac.shenkar.common.CityInfo;
-import il.ac.shenkar.common.Logger;
-import il.ac.shenkar.common.StateInfo;
-import il.ac.shenkar.common.cityEnumType;
+import il.ac.shenkar.common.*;
 import il.ac.shenker.wiki.PageSection;
 import il.ac.shenker.wiki.WikiConsts;
 import il.ac.shenker.wiki.WikiImageInfo;
@@ -63,6 +61,34 @@ public class MainActivity extends Activity {
         mDrawerList.addHeaderView(header);
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,R.layout.drawer_list_item));
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                if (position == 0)
+                {
+                    // do nothing - the header is pressed
+                    return;
+                }
+                DialogHelper.showProgressDialog("Loading...", getApplicationContext());
+                DataAccessObject.getInstance().getWikiSectionInfo(allPageSections.get(position - 1), new QueryWikipediaCallback<PageSection>() {
+                    @Override
+                    public void done(PageSection returnedObject, Exception e)
+                    {
+                        if (returnedObject != null)
+                        {
+                            FragmentManager fm = getFragmentManager();
+                            DialogFragment dialog = new WebViewFragment(MainActivity.this, returnedObject); // creating new object
+                            dialog.show(fm, "dialog");
+                        }
+                        DialogHelper.closeProggresDialog();
+                    }
+                } );
+
+
+            }
+        });
 
 
         mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
@@ -113,6 +139,7 @@ public class MainActivity extends Activity {
 
     }
 
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -141,6 +168,7 @@ public class MainActivity extends Activity {
     {
 
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,R.layout.drawer_list_item, createPageSectionsArray()));
+
         /*DataAccessObject.getInstance().getImagesUrl(new QueryWikipediaCallback<List<WikiImageInfo>>() {
             @Override
             public void done(List<WikiImageInfo> returnedObject, Exception e)
@@ -214,8 +242,8 @@ public class MainActivity extends Activity {
     }
 
     private void buildPAgeSectionLine(PageSection currInpPageSection, StringBuilder stringBuilder) {
-        stringBuilder.append(currInpPageSection.getSectionNumber());
-        stringBuilder.append(" ");
+       /* stringBuilder.append(currInpPageSection.getSectionNumber());
+        stringBuilder.append(" ");*/
         stringBuilder.append(currInpPageSection.getSectionName());
     }
 
