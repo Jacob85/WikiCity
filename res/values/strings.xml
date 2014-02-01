@@ -2,16 +2,16 @@
 <resources>
     <string name="app_name">WikiCity</string>
     <string name="city_name">CITY NAME</string>
-    <string name="year_established">Year</string>
+    <string name="year_established">YEAR</string>
     <string name="district_state">District/State</string>
-    <string name="story">Story</string>
-    <string name="area">Area</string>
+    <string name="story">STORY</string>
+    <string name="area">AREA</string>
     <string name="population">Population</string>
-    <string name="site">www.citysite.com</string>
+    <string name="site">WWW.CITYSITE.COM</string>
     <string name="wiki_cities">WIKICITIES</string>
     <string name="visual_explorer">Visual Explorer</string>
-    <string name="culture">Culture</string>
-    <string name="history">History</string>
+    <string name="culture">CULTURE</string>
+    <string name="history">HISTORY</string>
 
     <string-array name="items">
         <item>Hanny</item>

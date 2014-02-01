@@ -7,7 +7,7 @@ import com.example.WikiCity.R;
  */
 public enum cityEnumType
 {
-    LOS_ANGELES("Los Angeles", R.drawable.los_angeles,"California"),
+//    LOS_ANGELES("Los Angeles", R.drawable.los_angeles,"California"),
     LAS_VEGAS("Las Vegas", R.drawable.las_vegas,"Nevada"),
     MIAMI("Miami", R.drawable.miami, "Florida"),
     NEY_YORK("New York City", R.drawable.new_york, "New York" ),

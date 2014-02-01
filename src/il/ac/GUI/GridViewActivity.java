@@ -6,7 +6,7 @@ import android.widget.GridView;
 import com.example.WikiCity.R;
 import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 import il.ac.adapters.GridViewImagesAdapter;
-import il.ac.shenkar.common.CityEnumType;
+import il.ac.shenkar.common.cityEnumType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,10 +30,10 @@ public class GridViewActivity extends Activity
 
     }
 
-    public ArrayList<CityEnumType> getAllItems()
+    public ArrayList<cityEnumType> getAllItems()
     {
-        ArrayList<CityEnumType> toReturn;
-        toReturn = new ArrayList<CityEnumType>(Arrays.asList(CityEnumType.values()));
+        ArrayList<cityEnumType> toReturn;
+        toReturn = new ArrayList<cityEnumType>(Arrays.asList(cityEnumType.values()));
         return toReturn;
 
     }
