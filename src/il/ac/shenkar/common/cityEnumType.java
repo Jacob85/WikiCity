@@ -2,10 +2,12 @@ package il.ac.shenkar.common;
 
 import com.example.WikiCity.R;
 
+import java.io.Serializable;
+
 /**
  * Created by Amsalem on 30/01/14.
  */
-public enum cityEnumType
+public enum cityEnumType implements Serializable
 {
 //    LOS_ANGELES("Los Angeles", R.drawable.los_angeles,"California"),
     LAS_VEGAS("Las Vegas", R.drawable.las_vegas,"Nevada"),

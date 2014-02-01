@@ -12,6 +12,8 @@ public class WikiConsts
     public static String WIKI_API_END_POINT = "http://en.wikipedia.org/w/api.php";
     public static String SPACE = "%20";
 
+    public static String CITY_TYPE="CityType";
+    public static String CITY_TYPE_BUNDLE="CityTypeBundle";
 
 
     //City keys

@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
             }
         }, cityInfo.getImageSkyLine());
 
-        Fragment fragment = new CityFragment();
+        Fragment fragment = new CityFragment(cityInfo);
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
@@ -123,6 +123,9 @@ public class MainActivity extends Activity {
         private Typeface tfReg,tfLight;
         public CityFragment() {
             // Empty constructor required for fragment subclasses
+        }
+        public CityFragment(CityInfo cityInfo) {
+
         }
 
         @Override
@@ -142,8 +145,8 @@ public class MainActivity extends Activity {
             yearEstablish = (TextView)rootView.findViewById(R.id.year_title);
             story_long = (TextView)rootView.findViewById(R.id.story_long);
             state_title = (TextView)rootView.findViewById(R.id.state_title);
-            setFonts();
 
+            setFonts();
             calculateLittleMen();
 
 

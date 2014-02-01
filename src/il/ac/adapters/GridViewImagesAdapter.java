@@ -1,12 +1,15 @@
 package il.ac.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.Toast;
+import il.ac.GUI.MainActivity;
 import il.ac.bl.DataAccessObject;
 import il.ac.services.QueryWikipediaCallback;
 import il.ac.shenkar.common.CityInfo;
@@ -14,6 +17,7 @@ import il.ac.shenkar.common.GifWebView;
 import il.ac.shenkar.common.Logger;
 import il.ac.shenkar.common.cityEnumType;
 import il.ac.shenker.wiki.PageSection;
+import il.ac.shenker.wiki.WikiConsts;
 
 import java.util.ArrayList;
 
@@ -99,24 +103,30 @@ public class GridViewImagesAdapter extends BaseAdapter {
             {
                 cityEnumType type = enumTypeArrayList.get(position);
                 Toast.makeText(myContext, type.getCityName() + " was pressed, from state " + type.getStateName(), 1500).show();
-                DataAccessObject.getInstance().getCityInfo(type.getCityName(), new QueryWikipediaCallback<CityInfo>() {
-                    @Override
-                    public void done(CityInfo returnedObject, Exception e)
-                    {
-                        if (returnedObject != null)
-                        {
-                            DataAccessObject.getInstance().getWikiSectionInfo(returnedObject.getPageSections().get(0), new QueryWikipediaCallback<PageSection>() {
-                                @Override
-                                public void done(PageSection returnedObject, Exception e)
-                                {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(WikiConsts.CITY_TYPE,type);
 
-                                    Logger.logInfo(returnedObject.getSecrionContentInHtml());
-                                }
-                            });
-                        }
-
-                    }
-                });
+                Intent intent = new Intent(myContext, MainActivity.class);
+                intent.putExtra(WikiConsts.CITY_TYPE_BUNDLE, bundle);
+                myContext.startActivity(intent);
+//                DataAccessObject.getInstance().getCityInfo(type.getCityName(), new QueryWikipediaCallback<CityInfo>() {
+//                    @Override
+//                    public void done(CityInfo returnedObject, Exception e)
+//                    {
+//                        if (returnedObject != null)
+//                        {
+//                            DataAccessObject.getInstance().getWikiSectionInfo(returnedObject.getPageSections().get(0), new QueryWikipediaCallback<PageSection>() {
+//                                @Override
+//                                public void done(PageSection returnedObject, Exception e)
+//                                {
+//
+//                                    Logger.logInfo(returnedObject.getSecrionContentInHtml());
+//                                }
+//                            });
+//                        }
+//
+//                    }
+//                });
             }
         });
 
