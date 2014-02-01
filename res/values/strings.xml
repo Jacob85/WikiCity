@@ -10,6 +10,8 @@
     <string name="site">www.citysite.com</string>
     <string name="wiki_cities">WIKICITIES</string>
     <string name="visual_explorer">Visual Explorer</string>
+    <string name="culture">Culture</string>
+    <string name="history">History</string>
 
     <string-array name="items">
         <item>Hanny</item>

@@ -57,7 +57,7 @@
                   android:layout_height="wrap_content"
                   android:gravity="left"
                   android:layout_gravity="center_vertical"
-                  android:textSize="70sp"
+                  android:textSize="90sp"
                   android:text="@string/story"/>
 
         <TextView android:id="@+id/mayor_lastname"
@@ -87,7 +87,7 @@
               android:layout_margin="10dp"
               android:gravity="left"
               android:textSize="50sp"
-              android:text="@string/story"/>
+              android:text="@string/culture"/>
 
     <TextView android:id="@+id/history_text"
               android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
               android:background="@drawable/back"
               android:gravity="left"
               android:textSize="50sp"
-              android:text="@string/story"/>
+              android:text="@string/history"/>
     </LinearLayout>
     <LinearLayout
             android:id="@+id/people_and_area_layout"
