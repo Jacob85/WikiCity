@@ -254,8 +254,8 @@ public class MainActivity extends Activity {
      */
     public static class CityFragment extends Fragment {
 
-        private TextView cityName, populationNumber, citySite,story_long,state_title,
-                yearEstablish, culture,history, storyTitle, areaTitle;
+        private TextView cityName, populationNumber, citySite,story_long, state_title, water_value,
+                min_tmp, max_tmp, yearEstablish, culture,history, storyTitle, areaTitle;
         private View linearLayout;
         private Typeface tfReg,tfLight;
         private CityInfo city;
@@ -284,13 +284,16 @@ public class MainActivity extends Activity {
 
             cityName = (TextView)rootView.findViewById(R.id.city_name);
             storyTitle = (TextView)rootView.findViewById(R.id.story_text);
-            history = (TextView)rootView.findViewById(R.id.history_text);
-            culture = (TextView)rootView.findViewById(R.id.culture);
+//            history = (TextView)rootView.findViewById(R.id.history_text);
+//            culture = (TextView)rootView.findViewById(R.id.culture);
             citySite = (TextView)rootView.findViewById(R.id.site_text);
             areaTitle = (TextView)rootView.findViewById(R.id.area_text);
             yearEstablish = (TextView)rootView.findViewById(R.id.year_title);
             story_long = (TextView)rootView.findViewById(R.id.story_long);
             state_title = (TextView)rootView.findViewById(R.id.state_title);
+            water_value = (TextView)rootView.findViewById(R.id.water_val);
+            min_tmp = (TextView)rootView.findViewById(R.id.min_tmp);
+            max_tmp = (TextView)rootView.findViewById(R.id.max_tmp);
 
             linearLayout =  rootView.findViewById(R.id.littles);
 
@@ -306,18 +309,20 @@ public class MainActivity extends Activity {
 
             cityName.setTypeface(tfReg);
             storyTitle.setTypeface(tfReg);
-            history.setTypeface(tfReg);
-            culture.setTypeface(tfReg);
+//            history.setTypeface(tfReg);
+//            culture.setTypeface(tfReg);
             citySite.setTypeface(tfReg);
             yearEstablish.setTypeface(tfReg);
             areaTitle.setTypeface(tfReg);
             story_long.setTypeface(tfLight);
             state_title.setTypeface(tfReg);
+            water_value.setTypeface(tfReg);
+            min_tmp.setTypeface(tfReg);
+            max_tmp.setTypeface(tfReg);
+
         }
 
         private void populateViews () {
-
-
 
             if(city.getCityName() != null)
                 cityName.setText(city.getCityName().toUpperCase());
@@ -330,10 +335,24 @@ public class MainActivity extends Activity {
                 yearEstablish.setText((String.valueOf(calendar.get(Calendar.YEAR))));
             }
 
+            if(city.getRegion() != null)
+                state_title.setText(city.getRegion().toString().toUpperCase());
+
+            if(city.getCityGeneralInfo() != null)
+                story_long.setText(city.getCityGeneralInfo().toString());
+
+            if(city.getWaterAreaPercentage() != 0)
+                water_value.setText(String.valueOf(city.getWaterAreaPercentage())+ "%");
+
+            if(city.getYearMinTemp()!= 0)
+                min_tmp.setText(String.valueOf(city.getYearMinTemp())+ "%");
+
+            if(city.getYearMaxTemp()!= 0)
+                max_tmp.setText(String.valueOf(city.getYearMaxTemp())+ "%");
         }
 
         public void calculateLittleMen() {
-            long statePopulation = stateInfo.getStatePopulation();
+            double statePopulation = (double)stateInfo.getStatePopulation();
             double result = 0;
             int i =0;
             if(city.getTotalPopulation() != 0) {

@@ -25,7 +25,7 @@ public class GridViewActivity extends Activity
         GridViewImagesAdapter gridViewImagesAdapter = new GridViewImagesAdapter(this,getAllItems());
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(gridViewImagesAdapter);
         swingBottomInAnimationAdapter.setAbsListView(gridView);
-        swingBottomInAnimationAdapter.setInitialDelayMillis(300);
+        swingBottomInAnimationAdapter.setInitialDelayMillis(500);
         gridView.setAdapter(swingBottomInAnimationAdapter);
 
     }
