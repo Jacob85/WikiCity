@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Movie;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -36,6 +39,7 @@ public class MainActivity extends Activity {
     private CityInfo cityInfo;
     private Calendar calendar;
     private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
     private ListView mDrawerList;
     private Movie movie;
     private String[] mPlanetTitles;
@@ -56,6 +60,35 @@ public class MainActivity extends Activity {
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,R.layout.drawer_list_item));
 
+        mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
+                mDrawerLayout, /* DrawerLayout object */
+                R.drawable.ic_drawer, /* nav drawer image to replace 'Up' caret */
+                R.string.drawer_open, /* "open drawer" description for accessibility */
+                R.string.drawer_close /* "close drawer" description for accessibility */
+        )
+        {
+            public void onDrawerClosed(View view)
+            {
+                getActionBar().setTitle("Wiki City");
+                invalidateOptionsMenu(); // creates call to
+
+            }
+
+            public void onDrawerOpened(View drawerView)
+            {
+                getActionBar().setTitle("Wiki City");
+                invalidateOptionsMenu(); // creates call to
+                // onPrepareOptionsMenu()
+            }
+        };
+
+        // set listener to the menu
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+
+
+
         Bundle bundle = getIntent().getExtras().getBundle(WikiConsts.CITY_TYPE_BUNDLE);
         cityEnumType type = (cityEnumType) bundle.getSerializable(WikiConsts.CITY_TYPE);
         DataAccessObject.getInstance().getCityInfo(type.getCityName(),new QueryWikipediaCallback<CityInfo>() {
@@ -74,6 +107,30 @@ public class MainActivity extends Activity {
 
     }
 
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Pass the event to ActionBarDrawerToggle, if it returns
+        // true, then it has handled the app icon touch event
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        // Handle your other action bar items...
+
+        return super.onOptionsItemSelected(item);
+    }
     private void populateViews () {
 
 
