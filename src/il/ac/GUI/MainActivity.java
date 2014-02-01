@@ -12,10 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import com.example.WikiCity.R;
 import java.util.Calendar;
 import java.util.List;
@@ -25,6 +22,7 @@ import il.ac.services.DownloadImageAsyncTask;
 import il.ac.services.QueryWikipediaCallback;
 import il.ac.shenkar.common.CityInfo;
 import il.ac.shenkar.common.Logger;
+import il.ac.shenkar.common.StateInfo;
 import il.ac.shenkar.common.cityEnumType;
 import il.ac.shenker.wiki.WikiConsts;
 import il.ac.shenker.wiki.WikiImageInfo;
@@ -85,9 +83,9 @@ public class MainActivity extends Activity {
             {
                 if (returnedObject != null)
                 {
-                    ImageView imageView = (ImageView) findViewById(R.id.right_twin);
-                    DownloadImageAsyncTask downloadImageAsyncTask = new DownloadImageAsyncTask(imageView);
-                    downloadImageAsyncTask.execute(returnedObject.get(0).getImageUrl());
+//                    ImageView imageView = (ImageView) findViewById(R.id.right_twin);
+//                    DownloadImageAsyncTask downloadImageAsyncTask = new DownloadImageAsyncTask(imageView);
+//                    downloadImageAsyncTask.execute(returnedObject.get(0).getImageUrl());
                 }
                 else
                 {
@@ -108,16 +106,20 @@ public class MainActivity extends Activity {
 
         private TextView cityName, populationNumber, citySite,story_long,state_title,
                 yearEstablish, culture,history, storyTitle, areaTitle;
+        private View linearLayout;
         private Typeface tfReg,tfLight;
         private CityInfo city;
         private Calendar calendar;
+        private StateInfo stateInfo;
 
         public CityFragment() {
             // Empty constructor required for fragment subclasses
         }
         public CityFragment(CityInfo currCityInfo) {
-            if(currCityInfo != null)
+            if(currCityInfo != null) {
                 city = currCityInfo;
+                stateInfo = new StateInfo();
+            }
         }
 
         @Override
@@ -139,6 +141,8 @@ public class MainActivity extends Activity {
             yearEstablish = (TextView)rootView.findViewById(R.id.year_title);
             story_long = (TextView)rootView.findViewById(R.id.story_long);
             state_title = (TextView)rootView.findViewById(R.id.state_title);
+
+            linearLayout =  rootView.findViewById(R.id.littles);
 
             setFonts();
             populateViews();
@@ -177,6 +181,23 @@ public class MainActivity extends Activity {
         }
 
         public void calculateLittleMen() {
+            long statePopulation = stateInfo.getStatePopulation();
+            double result = 0;
+            int i =0;
+            if(city.getTotalPopulation() != 0) {
+                result =(city.getTotalPopulation()/statePopulation)*100;
+            }
+
+            while (i < result) {
+
+                ImageView image = new ImageView(getActivity().getBaseContext());
+                image.setImageResource(R.drawable.man1);
+                image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                ((LinearLayout) linearLayout).addView(image);
+
+                ++i;
+            }
 
         }
     }

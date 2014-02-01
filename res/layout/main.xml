@@ -4,7 +4,7 @@
           android:orientation="vertical"
           android:layout_height="fill_parent"
           android:gravity="center_horizontal"
-          android:background="@android:color/background_dark">
+          android:background="@drawable/newyork">
 
 
     <TextView android:id="@+id/city_name"
@@ -60,7 +60,7 @@
                   android:lines="1"
                   android:gravity="left"
                   android:layout_gravity="center_vertical"
-                  android:textSize="90sp"
+                  android:textSize="60sp"
                   android:text="@string/story"/>
 
         <TextView android:id="@+id/story_long"
@@ -79,7 +79,7 @@
             android:layout_below="@+id/story_layout"
             android:layout_alignParentLeft="true"
             android:orientation="vertical"
-            android:layout_above="@+id/twins_layout">
+            android:layout_above="@+id/line">
 
     <TextView android:id="@+id/culture"
               android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
               android:padding="10dp"
               android:layout_margin="10dp"
               android:gravity="left"
-              android:textSize="50sp"
+              android:textSize="40sp"
               android:text="@string/culture"/>
 
     <TextView android:id="@+id/history_text"
@@ -102,7 +102,7 @@
               android:padding="10dp"
               android:background="@drawable/back"
               android:gravity="left"
-              android:textSize="50sp"
+              android:textSize="40sp"
               android:text="@string/history"/>
     </LinearLayout>
     <LinearLayout
@@ -114,8 +114,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:gravity="right"
-            android:layout_above="@+id/twins_layout"
-            android:layout_toRightOf="@+id/links_layout">
+            android:layout_toRightOf="@+id/links_layout" android:layout_above="@+id/line">
 
             <LinearLayout
                     android:id="@+id/area_layout"
@@ -178,51 +177,57 @@
                     android:layout_below="@+id/area_layout"
                     android:orientation="horizontal">
 
+                <LinearLayout
+                        android:id="@+id/littles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                </LinearLayout>
                 <ImageView
                         android:id="@+id/pop_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:layout_alignParentRight="true"
                         android:src="@drawable/man2"/>
+
             </LinearLayout>
     </LinearLayout>
 
-        <LinearLayout
-                android:id="@+id/twins_layout"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/line"
-                android:orientation="horizontal"
-                >
+        <!--<LinearLayout-->
+                <!--android:id="@+id/twins_layout"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_above="@+id/line"-->
+                <!--android:orientation="horizontal"-->
+                <!-->-->
 
-        <ImageView
-                android:id="@+id/right_twin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="right"
-                android:src="@drawable/twin"/>
+        <!--<ImageView-->
+                <!--android:id="@+id/right_twin"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_gravity="right"-->
+                <!--android:src="@drawable/twin"/>-->
 
-        <ImageView
-                android:id="@+id/center_twin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:src="@drawable/twin"/>
+        <!--<ImageView-->
+                <!--android:id="@+id/center_twin"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:src="@drawable/twin"/>-->
 
-            <ImageView
-                android:id="@+id/left_twin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="left"
-                android:layout_margin="10dp"
-                android:src="@drawable/twin"/>
+            <!--<ImageView-->
+                <!--android:id="@+id/left_twin"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:src="@drawable/twin"/>-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
         <TextView
                 android:id="@+id/site_text"
