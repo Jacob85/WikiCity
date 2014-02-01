@@ -57,9 +57,4 @@ public class WikiConsts
     public static String CITY_LANG = "http://www.w3.org/2003/01/geo/wgs84_pos#long";
     public static String CITY_TOTAL_AREA_KM = "http://dbpedia.org/property/areaTotalKm'";
     public static String CITY_TOTAL_LAND_AREA_KM = "http://dbpedia.org/property/areaLandKm";
-
-
-
-
-
 }
