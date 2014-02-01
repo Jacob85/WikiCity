@@ -2,6 +2,10 @@ package il.ac.services;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 import il.ac.shenkar.common.Logger;
@@ -49,6 +53,7 @@ public class DownloadImageAsyncTask extends AsyncTask<URL, Void, Bitmap> {
     {
         if (result != null)
             bmImage.setImageBitmap(result);
+
     }
 }
 

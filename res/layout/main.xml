@@ -133,7 +133,7 @@
                         android:id="@+id/area_left"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/area1"
+                        android:src="@drawable/area2"
                         android:layout_gravity="right|center"
 
                         />
@@ -151,7 +151,7 @@
                         android:id="@+id/urban_right"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/area4"
+                        android:src="@drawable/area3"
                         android:layout_gravity="left|center"
 
                         />
@@ -197,7 +197,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/newyork"
                 android:layout_gravity="right"
                 android:src="@drawable/twin"/>
 

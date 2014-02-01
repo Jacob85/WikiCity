@@ -10,18 +10,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.example.WikiCity.R;
 import java.util.Calendar;
-import java.util.List;
 
 import il.ac.bl.DataAccessObject;
-import il.ac.services.DownloadImageAsyncTask;
 import il.ac.services.QueryWikipediaCallback;
 import il.ac.shenkar.common.CityInfo;
 import il.ac.shenkar.common.Logger;
-import il.ac.shenker.wiki.WikiImageInfo;
 
 /**
  * Created by hannypeleg on 1/28/14.
@@ -32,7 +30,9 @@ public class MainActivity extends Activity {
     private CityInfo cityInfo;
     private Calendar calendar;
     private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
     private Movie movie;
+    private String[] mPlanetTitles;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +44,15 @@ public class MainActivity extends Activity {
 //        yearEstablish = (TextView) findViewById(R.id.sub_title);
 //        timeZone = (TextView) findViewById(R.id.time_zone);
         mDrawerLayout =(DrawerLayout)findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mPlanetTitles = getResources().getStringArray(R.array.items);
+
+        View header = getLayoutInflater().inflate(R.layout.header, null);
+//        View footer = getLayoutInflater().inflate(R.layout.footer, null);
+        mDrawerList.addHeaderView(header);
+        // set up the drawer's list view with items and click listener
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.drawer_list_item));
 
         DataAccessObject.getInstance().getCityInfo("Los Angeles",new QueryWikipediaCallback<CityInfo>() {
             @Override
@@ -78,23 +87,24 @@ public class MainActivity extends Activity {
 //        if(cityInfo.getUtcOffset() != 0) {
 //            timeZone.setText("GMT " + String.valueOf(cityInfo.getUtcOffset()));
 //        }
-        DataAccessObject.getInstance().getImagesUrl(new QueryWikipediaCallback<List<WikiImageInfo>>() {
-            @Override
-            public void done(List<WikiImageInfo> returnedObject, Exception e)
-            {
-                if (returnedObject != null)
-                {
-                    ImageView imageView = (ImageView) findViewById(R.id.right_twin);
-                    DownloadImageAsyncTask downloadImageAsyncTask = new DownloadImageAsyncTask(imageView);
-                    downloadImageAsyncTask.execute(returnedObject.get(0).getImageUrl());
-                }
-                else
-                {
-                    // display error message
-                    Logger.logException(e);
-                }
-            }
-        }, cityInfo.getImageFlagWikiName(), cityInfo.getImageSealWikiName(), cityInfo.getImageMapWikiName(), cityInfo.getImageSkyLine());
+//        DataAccessObject.getInstance().getImagesUrl(new QueryWikipediaCallback<List<WikiImageInfo>>() {
+//            @Override
+//            public void done(List<WikiImageInfo> returnedObject, Exception e)
+//            {
+//                if (returnedObject != null)
+//                {
+//                    ImageView imageView = (ImageView) findViewById(R.id.right_twin);
+//                    DownloadImageAsyncTask downloadImageAsyncTask = new DownloadImageAsyncTask(imageView);
+//                    downloadImageAsyncTask.execute(returnedObject.get(0).getImageUrl());
+//                }
+//                else
+//                {
+//                    // display error message
+//                    Logger.logException(e);
+//                }
+//            }
+//        }, cityInfo.getImageFlagWikiName(), cityInfo.getImageSealWikiName(), cityInfo.getImageMapWikiName(), cityInfo.getImageSkyLine());
+//
         Fragment fragment = new PlanetFragment();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();

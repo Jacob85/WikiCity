@@ -8,4 +8,12 @@
     <string name="area">Area</string>
     <string name="population">Population</string>
     <string name="site">www.citysite.com</string>
+    <string name="wiki_cities">WIKICITIES</string>
+    <string name="visual_explorer">Visual Explorer</string>
+
+    <string-array name="items">
+        <item>Hanny</item>
+        <item>Hanny1</item>
+        <item>Hann</item>
+    </string-array>
 </resources>
