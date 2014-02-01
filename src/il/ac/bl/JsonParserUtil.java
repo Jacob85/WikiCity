@@ -1,10 +1,8 @@
 package il.ac.bl;
 
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import il.ac.shenkar.common.CityInfo;
 import il.ac.shenkar.common.Logger;
-import il.ac.shenkar.common.WikiPageSection;
 import il.ac.shenker.wiki.PageSection;
 import il.ac.shenker.wiki.WikiConsts;
 import il.ac.shenker.wiki.WikiImageInfo;
@@ -220,34 +218,35 @@ return collectionToReturn;
         {
             Iterator<?> keys = json.keys();
             // get the resource json Object
-            JSONObject resourceJson = json.getJSONObject((String)keys.next());
-            builder.cityName(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_NAME));
-            builder.utcOffset(parseInt(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_UTC_OFFSET)));
-            builder.establishedDate(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_ESTABLISHED_DATE));
-            builder.countryName(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_COUNTRY));
-            builder.cityWebSite(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_WEB_SITE_URL));
-            builder.geoLocation(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_LAT),getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_LANG));
-            builder.imageFlagName(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_IMAGE_FLAG_NAME));
-            builder.imageMapName(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_IMAGE_MAP_NAME));
-            builder.imageSealName(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_IMAGE_SEAL_NAME));
-            builder.imageSky(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_IMAGE_SKY_LINE));
-            builder.wikiOrigPageUrl(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_ORIGINAL_WIKI_PAGE_URL));
-            builder.postalCode(parseInt(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_POSTAL_CODE)));
-            builder.totalPopulation(parseLong(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_TOTAL_POPULATION)));
-            builder.wikipageId(parseInt(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_WIKI_ID)));
-            builder.wikiRevisionId(parseInt(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_WIKI_REVISION_ID)));
-            builder.nickName(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_NICK_NAME));
-            builder.region(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_COORDINATES_REGION));
-            builder.waterAreaPercentage(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_WATER_AREA_PERCENTAGE)));
-            builder.numberofRainDaysAyear(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_NUMBER_OF_RAIN_DAYS_YEAR)));
-            builder.yearMinTemp(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_YEAR_MIN_TEMP)));
-            builder.yearMaxTemp(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_YEAR_MAX_TEMP)));
-            builder.totalAreaKm(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_TOTAL_AREA_KM)));
-            builder.totalLandAreaKm(parseDouble(getFirstValueFromJsonArray(resourceJson, WikiConsts.CITY_TOTAL_LAND_AREA_KM)));
-            builder.cityGeneralInfo((getOnlyEnglishDataFromJsonArray(resourceJson, WikiConsts.CITY_GENERAL_INFO)));
+            JSONObject liveDbpediaResourceJson = json.getJSONObject("live.dbpedia");
+            JSONObject dbpediaResourceJson = json.getJSONObject("dbpedia");
+            builder.cityName(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson,  WikiConsts.CITY_NAME));
+            builder.utcOffset(parseInt(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_UTC_OFFSET)));
+            builder.establishedDate(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_ESTABLISHED_DATE));
+            builder.countryName(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_COUNTRY));
+            builder.cityWebSite(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_WEB_SITE_URL));
+            builder.geoLocation(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_LAT),getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_LANG));
+            builder.imageFlagName(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_IMAGE_FLAG_NAME));
+            builder.imageMapName(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_IMAGE_MAP_NAME));
+            builder.imageSealName(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_IMAGE_SEAL_NAME));
+            builder.imageSky(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_IMAGE_SKY_LINE));
+            builder.wikiOrigPageUrl(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_ORIGINAL_WIKI_PAGE_URL));
+            builder.postalCode(parseInt(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_POSTAL_CODE)));
+            builder.totalPopulation(parseLong(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_TOTAL_POPULATION)));
+            builder.wikipageId(parseInt(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_WIKI_ID)));
+            builder.wikiRevisionId(parseInt(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_WIKI_REVISION_ID)));
+            builder.nickName(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_NICK_NAME));
+            builder.region(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_COORDINATES_REGION));
+            builder.waterAreaPercentage(parseDouble(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_WATER_AREA_PERCENTAGE)));
+            builder.numberofRainDaysAyear(parseDouble(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_NUMBER_OF_RAIN_DAYS_YEAR)));
+            builder.yearMinTemp(parseDouble(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_YEAR_MIN_TEMP)));
+            builder.yearMaxTemp(parseDouble(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_YEAR_MAX_TEMP)));
+            builder.totalAreaKm(parseDouble(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_TOTAL_AREA_KM)));
+            builder.totalLandAreaKm(parseDouble(getFirstValueFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson, WikiConsts.CITY_TOTAL_LAND_AREA_KM)));
+            builder.cityGeneralInfo((getOnlyEnglishDataFromJsonArray(liveDbpediaResourceJson, dbpediaResourceJson,  WikiConsts.CITY_GENERAL_INFO)));
 
             //external Links
-            Collection<String> externalLinks = getAllValuesFromJsonArray(resourceJson, WikiConsts.CITY_WIKI_EXTERNAL_LINKS);
+            Collection<String> externalLinks = getAllValuesFromJsonArray(liveDbpediaResourceJson, WikiConsts.CITY_WIKI_EXTERNAL_LINKS);
             for (String urlString : externalLinks)
             {
                 builder.addExternalLink(new URL(urlString));
@@ -262,43 +261,70 @@ return collectionToReturn;
         }
 
     }
-    private static String getOnlyEnglishDataFromJsonArray(JSONObject rootJson, String key)
+    private static String getOnlyEnglishDataFromJsonArray(JSONObject rootJson, JSONObject dbpediaResourceJson, String key)
     {
         try
         {
-            JSONArray jsonArray = rootJson.getJSONArray(key);
-            JSONObject currJson;
-            for (int i=0; i < jsonArray.length() ; i++)
-            {
-                currJson = (JSONObject) jsonArray.get(i);
-                if ("en".equals(currJson.getString("lang")))
-                {
-                    //this is the english object, return the value
-                    return currJson.getString("value");
-                }
-            }
-            return null;
+            return getEnglishString(rootJson, key);
         }catch (JSONException e)
         {
-            Logger.logError("Error Occered while trying to parse: " + key);
-            Logger.logException(e);
-            return null;
+            try
+            {
+                Logger.logInfo("Failed to get " + key + " from live.dbpedia, trying to get the data from dbpedia");
+                return getEnglishString(dbpediaResourceJson, key);
+            } catch (JSONException e1)
+            {
+                e1.printStackTrace();
+                Logger.logError("Error Occered while trying to parse: " + key);
+                Logger.logException(e);
+                return null;
+            }
         }
     }
-    private static String getFirstValueFromJsonArray(JSONObject rootJson, String key)
+
+    private static String getEnglishString(JSONObject rootJson, String key) throws JSONException {
+        JSONArray jsonArray = rootJson.getJSONArray(key);
+        JSONObject currJson;
+        for (int i=0; i < jsonArray.length() ; i++)
+        {
+            currJson = (JSONObject) jsonArray.get(i);
+            if ("en".equals(currJson.getString("lang")))
+            {
+                //this is the english object, return the value
+                return currJson.getString("value");
+            }
+        }
+        return null;
+    }
+
+    private static String getFirstValueFromJsonArray(JSONObject liveDbpediaJson, JSONObject dbpediaResourceJson, String key)
     {
        try
        {
-           JSONArray jsonArray = rootJson.getJSONArray(key);
-           JSONObject firstJsonObject = (JSONObject)jsonArray.get(0);
-           return firstJsonObject.getString("value");
+           return getString(liveDbpediaJson, key);
        } catch (JSONException e)
        {
-           Logger.logError("Error Occered while trying to parse: " + key);
-           Logger.logException(e);
-           return null;
+            try
+            {
+               //try to parse from dbpedia
+                Logger.logInfo("Failed to get " + key + " from live.dbpedia, trying to get the data from dbpedia");
+                return getString(dbpediaResourceJson, key);
+
+            }catch (JSONException e1)
+            {
+                Logger.logError("Error Occered while trying to parse: " + key);
+                Logger.logException(e1);
+                return null;
+            }
        }
     }
+
+    private static String getString(JSONObject liveDbpediaJson, String key) throws JSONException {
+        JSONArray jsonArray = liveDbpediaJson.getJSONArray(key);
+        JSONObject firstJsonObject = (JSONObject)jsonArray.get(0);
+        return firstJsonObject.getString("value");
+    }
+
     private static Collection<String> getAllValuesFromJsonArray (JSONObject rootJson, String key)
     {
         try
