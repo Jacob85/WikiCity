@@ -110,7 +110,7 @@ public class MainActivity extends Activity {
                 yearEstablish, culture,history, storyTitle, areaTitle;
         private Typeface tfReg,tfLight;
         private CityInfo city;
-        private
+        private Calendar calendar;
 
         public CityFragment() {
             // Empty constructor required for fragment subclasses
@@ -125,6 +125,7 @@ public class MainActivity extends Activity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.main, container, false);
 
+            calendar = Calendar.getInstance();
 
             tfReg = Typeface.createFromAsset(getActivity().getAssets(), "fonts/futura_lt_condensed_reg.ttf");
             tfLight = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Futura LT condensd light.ttf");
