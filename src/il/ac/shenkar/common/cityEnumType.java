@@ -16,7 +16,7 @@ public enum cityEnumType  implements Serializable
    // CHICAGO ("Chicago", R.drawable.chcago, "Illinois", 12882135, "fonts/Rex Bold Inline.oft"),
     BALTIMORE("Baltimore", R.drawable.baltimore, "Maryland", 5928814, "fonts/American Type writer LT cn.ttf" , R.drawable.baltimorebackground),
     BOSTON("Boston", R.drawable.boston, "Massachusetts", 6692824, "fonts/futura LT condensd.ttf", R.drawable.bostonbk ),
-    DALLAS("Dallas ", R.drawable.dallas, "Texas", 26448193, "fonts/Weston Free.otf" , R.drawable.dallasbk ),
+    DALLAS("Dallas", R.drawable.dallas, "Texas", 26448193, "fonts/Weston Free.otf" , R.drawable.dallasbk ),
     DENVER("Denver_City,_Texas", R.drawable.denver, "Texas", 26448193, "fonts/Weston Free.otf", R.drawable.denverbk),
     HONOLULU("Honolulu", R.drawable.honololo, "Hawaii", 1404054, "fonts/futura LT condensd.ttf" , R.drawable.honololobk),
     HOUSTON("Houston", R.drawable.houston, "Texas", 26448193, "fonts/Weston Free.otf", R.drawable.houstonbk),
