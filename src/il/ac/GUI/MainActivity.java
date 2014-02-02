@@ -38,6 +38,7 @@ public class MainActivity extends Activity {
 
 
     private CityInfo cityInfo;
+    private cityEnumType type;
     private Calendar calendar;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -122,7 +123,7 @@ public class MainActivity extends Activity {
 
 
         Bundle bundle = getIntent().getExtras().getBundle(WikiConsts.CITY_TYPE_BUNDLE);
-        cityEnumType type = (cityEnumType) bundle.getSerializable(WikiConsts.CITY_TYPE);
+        type = (cityEnumType) bundle.getSerializable(WikiConsts.CITY_TYPE);
         DataAccessObject.getInstance().getCityInfo(type.getCityName(),new QueryWikipediaCallback<CityInfo>() {
             @Override
             public void done(CityInfo returnedObject, Exception e) {
@@ -130,7 +131,7 @@ public class MainActivity extends Activity {
                     cityInfo = returnedObject;
                     populateViews();
                     DialogHelper.closeProggresDialog();
-                    Fragment fragment = new CityFragment(cityInfo);
+                    Fragment fragment = new CityFragment(cityInfo,type);
                     FragmentManager fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
                 } else {
@@ -261,13 +262,15 @@ public class MainActivity extends Activity {
         private CityInfo city;
         private Calendar calendar;
         private StateInfo stateInfo;
+        private cityEnumType type;
 
         public CityFragment() {
             // Empty constructor required for fragment subclasses
         }
-        public CityFragment(CityInfo currCityInfo) {
+        public CityFragment(CityInfo currCityInfo, cityEnumType currType) {
             if(currCityInfo != null) {
                 city = currCityInfo;
+                type = currType;
                 stateInfo = new StateInfo();
             }
         }
@@ -363,7 +366,7 @@ public class MainActivity extends Activity {
         }
 
         public void calculateLittleMen() {
-            double statePopulation = (double)stateInfo.getStatePopulation();
+            double statePopulation = type.getTotalStatePopulation();
             double result = 0;
             int i =0;
             if(city.getTotalPopulation() != 0) {
