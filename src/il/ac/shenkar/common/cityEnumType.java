@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public enum cityEnumType  implements Serializable
 {
-    LOS_ANGELES("Los Angeles", R.drawable.losangeles,"California", 38040000, "fonts/Yes Please - DeliciousPro.oft", R.drawable.losangelsbk),
+    LOS_ANGELES("Los Angeles", R.drawable.losangeles,"California", 38040000, "fonts/turbaynerunninghand.ttf", R.drawable.losangelsbk),
     LAS_VEGAS("Las Vegas", R.drawable.lasvegas,"Nevada" , 2758931, "fonts/LTE50181.TTF" , R.drawable.lasvegasbk),
     MIAMI("Miami", R.drawable.miami, "Florida", 19552860, "fonts/futura LT condensd.ttf", R.drawable.miami),
     NEY_YORK("New York City", R.drawable.newyork3, "New York" , 19651127, "fonts/ENGLISHT.TTF", R.drawable.newyorkbk ),
@@ -22,7 +22,7 @@ public enum cityEnumType  implements Serializable
     HOUSTON("Houston", R.drawable.houston, "Texas", 26448193, "fonts/Weston Free.otf", R.drawable.houstonbk),
     ORLANDO("Orlando,_Florida", R.drawable.orlando, "Florida", 19552860, "fonts/futura LT condensd.ttf", R.drawable.orlandobk),
     PHOENIX("Phoenix", R.drawable.phonix, "Arizona", 6626624, "fonts/BOOKOSB.TTF", R.drawable.phonix ),
-    SAN_FRANCISCO("San Francisco", R.drawable.sanfransico7, "California", 38040000,"fonts/Yes Please - DeliciousPro.oft", R.drawable.sanfransicobk),
+    SAN_FRANCISCO("San Francisco", R.drawable.sanfransico7, "California", 38040000,"fonts/turbaynerunninghand.ttf", R.drawable.sanfransicobk),
     SEATTLE("Seattle", R.drawable.seattle1, "Washington", 6971406, "fonts/Kankin.otf" , R.drawable.seattlebk),
     TULSA("Tulsa,_Oklahoma", R.drawable.tulsa, "Oklahoma", 3850568, "fonts/Kankin.otf" , R.drawable.tulsabk),
     WASHINGTON("Washington,_D.C.", R.drawable.washington, "Washington", 6971406, "fonts/Kankin.otf", R.drawable.washingtonbk),

@@ -256,8 +256,8 @@ public class MainActivity extends Activity {
     public static class CityFragment extends Fragment {
 
         private TextView cityName, populationNumber, citySite,story_long, state_title, water_value,
-                min_tmp, max_tmp, yearEstablish, culture,history, storyTitle, areaTitle;
-        private View linearLayout;
+                min_tmp, max_tmp, yearEstablish, utc, postal, rainDays , storyTitle, areaTitle;
+        private View linearLayout, linearLayout2, linearLayout3, linearLayout4;
         private Typeface tfReg,tfLight;
         private CityInfo city;
         private Calendar calendar;
@@ -295,17 +295,25 @@ public class MainActivity extends Activity {
             min_tmp = (TextView)rootView.findViewById(R.id.min_tmp);
             max_tmp = (TextView)rootView.findViewById(R.id.max_tmp);
 
+            rainDays = (TextView)rootView.findViewById(R.id.rain_text);
+            postal = (TextView)rootView.findViewById(R.id.post_text);
+            utc= (TextView)rootView.findViewById(R.id.utc_text);
+
+
             linearLayout =  rootView.findViewById(R.id.littles);
-            setTypeface("futura_lt_condensed_reg.ttf");
+            linearLayout2 =  rootView.findViewById(R.id.littles2);
+            linearLayout3 =  rootView.findViewById(R.id.littles3);
+            linearLayout4 =  rootView.findViewById(R.id.littles4);
+            setTypeface(type.getPathToFont());
             populateViews();
             calculateLittleMen();
-
+            rootView.setBackgroundResource(type.getImageBackGroundId());
 
             return rootView;
         }
 
         public void setTypeface(String regular) {
-            tfReg = Typeface.createFromAsset(getActivity().getAssets(), "fonts/"+regular);
+            tfReg = Typeface.createFromAsset(getActivity().getAssets(), regular);
            // tfLight = Typeface.createFromAsset(getActivity().getAssets(), light);
             setFonts(tfReg);
         }
@@ -322,6 +330,9 @@ public class MainActivity extends Activity {
             water_value.setTypeface(tfReg);
             min_tmp.setTypeface(tfReg);
             max_tmp.setTypeface(tfReg);
+            postal.setTypeface(tfReg);
+            rainDays.setTypeface(tfReg);
+            utc.setTypeface(tfReg);
 
         }
 
@@ -363,6 +374,15 @@ public class MainActivity extends Activity {
 
             if(city.getYearMaxTemp()!= 0)
                 max_tmp.setText(String.valueOf(city.getYearMaxTemp())+ "˚F");
+
+            if(city.getPostalCode()!= 0)
+                postal.setText(String.valueOf(city.getPostalCode()));
+
+            if(city.getNumberOfRainDaysAyear()!= 0)
+                rainDays.setText(String.valueOf(city.getNumberOfRainDaysAyear()));
+
+            if(city.getUtcOffset()!= 0)
+                utc.setText(String.valueOf(city.getUtcOffset()));
         }
 
         public void calculateLittleMen() {
@@ -377,9 +397,18 @@ public class MainActivity extends Activity {
 
                 ImageView image = new ImageView(getActivity().getBaseContext());
                 image.setImageResource(R.drawable.man1);
-                image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT));
+                image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)); 
+                if(i<13)
+                    ((LinearLayout) linearLayout).addView(image);
 
-                ((LinearLayout) linearLayout).addView(image);
+                if((i>=13)==(i<26))
+                    ((LinearLayout) linearLayout2).addView(image);
+
+                if((i>=26)==(i<39))
+                    ((LinearLayout) linearLayout3).addView(image);
+
+                if((i>=39))
+                    ((LinearLayout) linearLayout4).addView(image);
 
                 ++i;
             }
