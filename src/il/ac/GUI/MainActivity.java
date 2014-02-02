@@ -279,9 +279,6 @@ public class MainActivity extends Activity {
 
             calendar = Calendar.getInstance();
 
-            tfReg = Typeface.createFromAsset(getActivity().getAssets(), "fonts/futura_lt_condensed_reg.ttf");
-            tfLight = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Futura LT condensd light.ttf");
-
             cityName = (TextView)rootView.findViewById(R.id.city_name);
             storyTitle = (TextView)rootView.findViewById(R.id.story_text);
 //            history = (TextView)rootView.findViewById(R.id.history_text);
@@ -296,8 +293,7 @@ public class MainActivity extends Activity {
             max_tmp = (TextView)rootView.findViewById(R.id.max_tmp);
 
             linearLayout =  rootView.findViewById(R.id.littles);
-
-            setFonts();
+            setTypeface("futura_lt_condensed_reg.ttf");
             populateViews();
             calculateLittleMen();
 
@@ -305,16 +301,20 @@ public class MainActivity extends Activity {
             return rootView;
         }
 
-        public void setFonts() {
+        public void setTypeface(String regular) {
+            tfReg = Typeface.createFromAsset(getActivity().getAssets(), "fonts/"+regular);
+           // tfLight = Typeface.createFromAsset(getActivity().getAssets(), light);
+            setFonts(tfReg);
+        }
+
+        public void setFonts(Typeface tfReg) {
 
             cityName.setTypeface(tfReg);
             storyTitle.setTypeface(tfReg);
-//            history.setTypeface(tfReg);
-//            culture.setTypeface(tfReg);
             citySite.setTypeface(tfReg);
             yearEstablish.setTypeface(tfReg);
             areaTitle.setTypeface(tfReg);
-            story_long.setTypeface(tfLight);
+            story_long.setTypeface(tfReg);
             state_title.setTypeface(tfReg);
             water_value.setTypeface(tfReg);
             min_tmp.setTypeface(tfReg);
@@ -327,8 +327,19 @@ public class MainActivity extends Activity {
             if(city.getCityName() != null)
                 cityName.setText(city.getCityName().toUpperCase());
 
-            if(city.getCityWebSite() != null)
+            if(city.getCityWebSite() != null) {
                 citySite.setText(city.getCityWebSite().toString().toUpperCase());
+                citySite.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DialogHelper.showProgressDialog("Loading...", getActivity());
+                        FragmentManager fm = getFragmentManager();
+                        DialogFragment dialog = new WebViewFragment(getActivity(),city.getCityWebSite()); // creating new object
+                        dialog.show(fm, "dialog");
+                        DialogHelper.closeProggresDialog();
+                    }
+                });
+            }
 
             if(city.getEstablishedDate() != null) {
                 calendar.setTime(city.getEstablishedDate());
@@ -345,10 +356,10 @@ public class MainActivity extends Activity {
                 water_value.setText(String.valueOf(city.getWaterAreaPercentage())+ "%");
 
             if(city.getYearMinTemp()!= 0)
-                min_tmp.setText(String.valueOf(city.getYearMinTemp())+ "%");
+                min_tmp.setText(String.valueOf(city.getYearMinTemp())+ "˚F");
 
             if(city.getYearMaxTemp()!= 0)
-                max_tmp.setText(String.valueOf(city.getYearMaxTemp())+ "%");
+                max_tmp.setText(String.valueOf(city.getYearMaxTemp())+ "˚F");
         }
 
         public void calculateLittleMen() {
@@ -371,5 +382,6 @@ public class MainActivity extends Activity {
             }
 
         }
+
     }
 }
