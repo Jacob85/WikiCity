@@ -247,9 +247,12 @@ return collectionToReturn;
 
             //external Links
             Collection<String> externalLinks = getAllValuesFromJsonArray(liveDbpediaResourceJson, WikiConsts.CITY_WIKI_EXTERNAL_LINKS);
-            for (String urlString : externalLinks)
+            if (externalLinks != null)
             {
-                builder.addExternalLink(new URL(urlString));
+                for (String urlString : externalLinks)
+                {
+                     builder.addExternalLink(new URL(urlString));
+                }
             }
 
 

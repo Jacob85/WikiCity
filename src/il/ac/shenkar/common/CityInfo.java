@@ -501,7 +501,14 @@ public class CityInfo
         }
         public CityInfoBuilder geoLocation (String latString, String lngString)
         {
-            this.geoLocation = new LatLng(Double.parseDouble(latString), Double.parseDouble(lngString));
+            try
+            {
+                this.geoLocation = new LatLng(Double.parseDouble(latString), Double.parseDouble(lngString));
+            }catch (Exception e)
+            {
+                Logger.logError("Failed to parse lat lng: " + e.getMessage());
+                this.geoLocation = null;
+            }
             return this;
         }
         public CityInfo build()
